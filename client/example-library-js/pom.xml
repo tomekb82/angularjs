@@ -99,7 +99,7 @@
 
                     <!--
                         Maven "test" phase: Run grunt with target "test"
-                    -->
+                    
                     <execution>
                         <id>test</id>
                         <phase>test</phase>
@@ -109,7 +109,7 @@
                         <configuration>
                             <target>test</target>
                         </configuration>
-                    </execution>
+                    </execution> -->
 
                     <!--
                         Maven "(prepare-)package" phase: Run grunt with target "package"
