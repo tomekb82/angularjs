@@ -11,7 +11,7 @@ require(['example-library-js/Hello'], function(Hello) {
 
 });
 
-require(['example-library-js/Angular'], function(todos) {
+require(['example-library-js/AngularApp'], function(todos) {
 
 	var test = todos.todomvc.test;
 	console.log(test);

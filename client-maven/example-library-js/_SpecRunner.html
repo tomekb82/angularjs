@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href=".grunt/grunt-contrib-jasmine/jasmine.css">
   
 
-  <script src=".grunt/grunt-contrib-jasmine/require.js"></script>
+  <script src=".grunt\grunt-contrib-jasmine/require.js"></script>
   <script>
     require.onError = function(error) {
       var message = error.requireType + ': ';
@@ -50,7 +50,16 @@
     require([
       
         
-        'target/js-test/main/ts/demo/Hello' 
+        'target/js-test/main/ts/demo/Angular' ,
+      
+        
+        'target/js-test/main/ts/demo/Hello' ,
+      
+        
+        'target/js-test/main/ts/demo/_all' ,
+      
+        
+        'target/js-test/main/ts/demo/at-angular' 
       
     ],
     function(){
