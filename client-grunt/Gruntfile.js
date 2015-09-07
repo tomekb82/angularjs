@@ -12,7 +12,11 @@ module.exports = function(grunt){
 				html: ["app/**/*.html"],
 				reference: "./app/reference.ts" ,
 				out: 'app/out.js',
-				watch: 'app'
+				watch: 'app',
+				options: {
+					target: 'es5',
+					sourcemap: 'true'
+				}
 			}
 		}
 	});

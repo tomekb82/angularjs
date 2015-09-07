@@ -3,6 +3,7 @@
 
 //grunt-start
 /// <reference path="directives/testme.html.ts" />
+/// <reference path="controllers/AnnotationController.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />
 /// <reference path="directives/testme.ts" />
