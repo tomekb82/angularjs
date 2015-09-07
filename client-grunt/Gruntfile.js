@@ -15,7 +15,8 @@ module.exports = function(grunt){
 				watch: 'app',
 				options: {
 					target: 'es5',
-					sourcemap: 'true'
+					sourcemap: 'true',
+					emitDecoratorMetadata: 'true'
 				}
 			}
 		}

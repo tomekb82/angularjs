@@ -1,5 +1,5 @@
 
-module todos {
+module at_angular {
 
     'use strict';
 
@@ -44,7 +44,7 @@ module todos {
         (...args: any[]): IClassAnnotationDecorator;
     }
 
-    export function inject(...args: string[]): todos.IClassAnnotationDecorator {
+    export function inject(...args: string[]): at_angular.IClassAnnotationDecorator {
         return (target: any, key?: string, index?: number): void => {
             if (angular.isNumber(index)) {
                 target.$inject = target.$inject || [];
@@ -59,7 +59,7 @@ module todos {
         (moduleName: string, serviceName: string): IClassAnnotationDecorator;
     }
 
-    export function service(moduleName: string, serviceName: string): todos.IClassAnnotationDecorator {
+    export function service(moduleName: string, serviceName: string): at_angular.IClassAnnotationDecorator {
         return instantiate(moduleName, serviceName, 'service');
     }
 
@@ -67,7 +67,7 @@ module todos {
         (moduleName: string, ctrlName: string): IClassAnnotationDecorator;
     }
 
-    export function controller(moduleName: string, ctrlName: string): todos.IClassAnnotationDecorator {
+    export function controller(moduleName: string, ctrlName: string): at_angular.IClassAnnotationDecorator {
         return instantiate(moduleName, ctrlName, 'controller');
     }
 
@@ -75,7 +75,7 @@ module todos {
         (moduleName: string, directiveName: string): IClassAnnotationDecorator;
     }
 
-    export function directive(moduleName: string, directiveName: string): todos.IClassAnnotationDecorator {
+    export function directive(moduleName: string, directiveName: string): at_angular.IClassAnnotationDecorator {
         return (target: any): void => {
             let config: angular.IDirective;
             /* istanbul ignore else */
@@ -98,10 +98,10 @@ module todos {
         (moduleName: string, className: string): IClassAnnotationDecorator;
     }
 
-    export function classFactory(moduleName: string, className: string): todos.IClassAnnotationDecorator {
+    export function classFactory(moduleName: string, className: string): at_angular.IClassAnnotationDecorator {
         return (target: any): void => {
             function factory(...args: any[]): any {
-                return todos.attachInjects(target, ...args);
+                return at_angular.attachInjects(target, ...args);
             }
             /* istanbul ignore else */
             if (target.$inject && target.$inject.length > 0) {
