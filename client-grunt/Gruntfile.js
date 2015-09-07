@@ -9,7 +9,7 @@ module.exports = function(grunt){
 		ts: {
 			dev:{
 				src: ["app/**/*.ts"],
-				hml: ["app/**/*.html"],
+				html: ["app/**/*.html"],
 				reference: "./app/reference.ts" ,
 				out: 'app/out.js',
 				watch: 'app'
