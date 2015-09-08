@@ -103,35 +103,12 @@ var testme;
 (function (testme) {
     testme.html = '<div>Hey wassup!</div>';
 })(testme || (testme = {}));
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
-    switch (arguments.length) {
-        case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
-        case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
-        case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
-    }
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var annotation;
-(function (annotation) {
-    var controller = at_angular.controller;
-    var AnnotationController = (function () {
-        function AnnotationController($scope, logService) {
-            this.message = "blablabla";
-            $scope.vm = this;
-            logService.log("Message from AnnotationController=" + $scope.vm.message);
-        }
-        AnnotationController = __decorate([
-            controller('controllers', 'AnnotationController'), 
-            __metadata('design:paramtypes', [Object, LogService])
-        ], AnnotationController);
-        return AnnotationController;
-    })();
-    annotation.AnnotationController = AnnotationController;
-    ;
-})(annotation || (annotation = {}));
+/// <reference path='./reference.ts' />
+angular.module('annotations', []);
+var annotations;
+(function (annotations) {
+    annotations.controller = at_angular.controller;
+})(annotations || (annotations = {}));
 var Controllers;
 (function (Controllers) {
     var MainController = (function () {
@@ -155,6 +132,34 @@ var Controllers;
     })();
     Controllers.TestController = TestController;
 })(Controllers || (Controllers = {}));
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
+    switch (arguments.length) {
+        case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
+        case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
+        case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
+    }
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var annotations;
+(function (annotations) {
+    var AnnotationController = (function () {
+        function AnnotationController($scope, logService) {
+            this.message = "aaaaaa";
+            $scope.vm = this;
+            logService.log("Message from AnnotationController=" + $scope.vm.message);
+        }
+        AnnotationController = __decorate([
+            annotations.controller('controllers', 'AnnotationController'), 
+            __metadata('design:paramtypes', [Object, LogService])
+        ], AnnotationController);
+        return AnnotationController;
+    })();
+    annotations.AnnotationController = AnnotationController;
+    ;
+})(annotations || (annotations = {}));
 /// <reference path='../reference.ts' />
 directives.directive('testme', function () {
     return {
@@ -177,9 +182,10 @@ services.service('logService', LogService);
 /// <reference path="directives/directives.ts" />
 /// <reference path="main.ts" />
 /// <reference path="directives/testme.html.ts" />
-/// <reference path="controllers/AnnotationController.ts" />
+/// <reference path="annotations.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />
+/// <reference path="controllers/annotations/AnnotationController.ts" />
 /// <reference path="directives/testme.ts" />
 /// <reference path="services/LogService.ts" />
 //# sourceMappingURL=out.js.map

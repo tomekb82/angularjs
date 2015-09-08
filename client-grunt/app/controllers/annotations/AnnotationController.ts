@@ -1,11 +1,9 @@
 
-module annotation {
-
-    import controller = at_angular.controller;
+module annotations {
 
 	@controller('controllers', 'AnnotationController')
 	export class AnnotationController {
-		message = "blablabla";
+		message = "aaaaaa";
 		constructor($scope, logService: LogService){
 			$scope.vm = this;
 			logService.log("Message from AnnotationController=" + $scope.vm.message);
