@@ -1,10 +1,3 @@
-/// <reference path='../reference.ts' />
-var services = angular.module('services', []);
-/// <reference path='../reference.ts' />
-angular.module('controllers', [])
-    .controller(Controllers);
-/// <reference path='../reference.ts' />
-var directives = angular.module('directives', []);
 var at_angular;
 (function (at_angular) {
     'use strict';
@@ -97,6 +90,13 @@ var at_angular;
     }
     at_angular.classFactory = classFactory;
 })(at_angular || (at_angular = {}));
+/// <reference path='../reference.ts' />
+var services = angular.module('services', []);
+/// <reference path='../reference.ts' />
+angular.module('controllers', [])
+    .controller(Controllers);
+/// <reference path='../reference.ts' />
+var directives = angular.module('directives', []);
 /// <reference path='./reference.ts' />
 var at_angular;
 (function (at_angular) {
@@ -132,6 +132,23 @@ var at_angular;
         return AnnotationController;
     })();
     at_angular.AnnotationController = AnnotationController;
+    ;
+})(at_angular || (at_angular = {}));
+var at_angular;
+(function (at_angular) {
+    var AnnotationController2 = (function () {
+        function AnnotationController2($scope, logService) {
+            this.message = "fffffffffffff";
+            $scope.vm = this;
+            logService.log("Message from AnnotationController=" + $scope.vm.message);
+        }
+        AnnotationController2 = __decorate([
+            at_angular.controller('controllers', 'AnnotationController2'), 
+            __metadata('design:paramtypes', [Object, LogService])
+        ], AnnotationController2);
+        return AnnotationController2;
+    })();
+    at_angular.AnnotationController2 = AnnotationController2;
     ;
 })(at_angular || (at_angular = {}));
 var Controllers;
@@ -173,13 +190,14 @@ var LogService = (function () {
     return LogService;
 })();
 services.service('logService', LogService);
+/// <reference path="vendor.d.ts" />
 /// <reference path="services/services.ts" />
 /// <reference path="controllers/controllers.ts" />
 /// <reference path="directives/directives.ts" />
-/// <reference path="vendor.d.ts" />
 /// <reference path="main.ts" />
 /// <reference path="directives/testme.html.ts" />
 /// <reference path="controllers/AnnotationController.ts" />
+/// <reference path="controllers/AnnotationController2.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />
 /// <reference path="directives/testme.ts" />
