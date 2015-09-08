@@ -176,6 +176,35 @@ var LogService = (function () {
     return LogService;
 })();
 services.service('logService', LogService);
+var test;
+(function (test) {
+    var Hello = (function () {
+        function Hello(name) {
+            this._name = name;
+        }
+        Object.defineProperty(Hello.prototype, "name", {
+            get: function () {
+                return this._name;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        return Hello;
+    })();
+    test.Hello = Hello;
+})(test || (test = {}));
+/// <reference path='../src/Hello.ts' />
+/// <reference path="../lib/jasmine.d.ts"/>
+var test;
+(function (test) {
+    var Hello = test.Hello;
+    describe("Hello", function () {
+        it("sayHello", function () {
+            var hello = new Hello("olek");
+            expect(hello.name).toBe("olek");
+        });
+    });
+})(test || (test = {}));
 /// <reference path="vendor.d.ts" />
 /// <reference path="services/services.ts" />
 /// <reference path="controllers/controllers.ts" />
@@ -188,4 +217,7 @@ services.service('logService', LogService);
 /// <reference path="controllers/annotations/AnnotationController.ts" />
 /// <reference path="directives/testme.ts" />
 /// <reference path="services/LogService.ts" />
+/// <reference path="../test/lib/jasmine.d.ts" />
+/// <reference path="../test/specs/HelloSpec.ts" />
+/// <reference path="../test/src/Hello.ts" />
 //# sourceMappingURL=out.js.map

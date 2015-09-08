@@ -12,6 +12,9 @@
 /// <reference path="controllers/annotations/AnnotationController.ts" />
 /// <reference path="directives/testme.ts" />
 /// <reference path="services/LogService.ts" />
+/// <reference path="../test/lib/jasmine.d.ts" />
+/// <reference path="../test/specs/HelloSpec.ts" />
+/// <reference path="../test/src/Hello.ts" />
 //grunt-end
 
 
