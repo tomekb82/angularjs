@@ -98,10 +98,7 @@ angular.module('controllers', [])
 /// <reference path='../reference.ts' />
 var directives = angular.module('directives', []);
 /// <reference path='./reference.ts' />
-var at_angular;
-(function (at_angular) {
-    angular.module('myApp', ['controllers', 'services', 'directives']);
-})(at_angular || (at_angular = {}));
+angular.module('myApp', ['controllers', 'services', 'directives']);
 var testme;
 (function (testme) {
     testme.html = '<div>Hey wassup!</div>';
@@ -117,8 +114,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var at_angular;
-(function (at_angular) {
+var annotation;
+(function (annotation) {
+    var controller = at_angular.controller;
     var AnnotationController = (function () {
         function AnnotationController($scope, logService) {
             this.message = "blablabla";
@@ -126,31 +124,14 @@ var at_angular;
             logService.log("Message from AnnotationController=" + $scope.vm.message);
         }
         AnnotationController = __decorate([
-            at_angular.controller('myApp', 'AnnotationController'), 
+            controller('controllers', 'AnnotationController'), 
             __metadata('design:paramtypes', [Object, LogService])
         ], AnnotationController);
         return AnnotationController;
     })();
-    at_angular.AnnotationController = AnnotationController;
+    annotation.AnnotationController = AnnotationController;
     ;
-})(at_angular || (at_angular = {}));
-var at_angular;
-(function (at_angular) {
-    var AnnotationController2 = (function () {
-        function AnnotationController2($scope, logService) {
-            this.message = "fffffffffffff";
-            $scope.vm = this;
-            logService.log("Message from AnnotationController=" + $scope.vm.message);
-        }
-        AnnotationController2 = __decorate([
-            at_angular.controller('controllers', 'AnnotationController2'), 
-            __metadata('design:paramtypes', [Object, LogService])
-        ], AnnotationController2);
-        return AnnotationController2;
-    })();
-    at_angular.AnnotationController2 = AnnotationController2;
-    ;
-})(at_angular || (at_angular = {}));
+})(annotation || (annotation = {}));
 var Controllers;
 (function (Controllers) {
     var MainController = (function () {
@@ -197,7 +178,6 @@ services.service('logService', LogService);
 /// <reference path="main.ts" />
 /// <reference path="directives/testme.html.ts" />
 /// <reference path="controllers/AnnotationController.ts" />
-/// <reference path="controllers/AnnotationController2.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />
 /// <reference path="directives/testme.ts" />
