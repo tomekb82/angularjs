@@ -1,4 +1,4 @@
-/// <reference path='../../reference.ts' />
+/// <reference path='../../app/reference.ts' />
 
 describe('Testing a controller', function() {
   var $scope, ctrl, $timeout;
@@ -21,7 +21,7 @@ describe('Testing a controller', function() {
     someServiceMock = jasmine.createSpyObj('someService', ['someAsyncCall']);
     
     // load the module you're testing.
-    angular.mock.module('myApp');
+    angular.mock.module('jaas');
     
     // INJECT! This part is critical
     // $rootScope - injected to create a new $scope instance.

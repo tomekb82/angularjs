@@ -1,4 +1,4 @@
-/// <reference path='../../reference.ts' />
+/// <reference path='../../app/reference.ts' />
 
 module test {
 import Hello = test.Hello;

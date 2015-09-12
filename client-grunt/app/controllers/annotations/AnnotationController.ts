@@ -3,7 +3,7 @@
 module annotations {
 
 	export var controller = at_angular.controller;
-
+    
 	@controller('controllers', 'AnnotationController')
 	export class AnnotationController {
 		message = "aaaaaa";
