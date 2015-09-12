@@ -3,15 +3,20 @@ Help:
 http://gruntjs.com/getting-started
 http://gruntjs.com/sample-gruntfile
 
+https://docs.angularjs.org/guide/unit-testing
+
 To start:
 npm install
 
 
-https://docs.angularjs.org/guide/unit-testing
+Run:
+- dev
+grunt
+- tests 
+grunt test
 
 
-
-tests:
+Tests:
 https://docs.angularjs.org/guide/unit-testing
 https://www.jiwhiz.com/blogs/Unit_Test_AngularJS_Controller_With_Jasmine
 http://nathanleclaire.com/blog/2013/12/13/how-to-unit-test-controllers-in-angularjs-without-setting-your-hair-on-fire/
