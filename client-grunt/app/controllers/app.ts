@@ -1,3 +1,5 @@
+/// <reference path='../reference.ts' />
+
 var app = angular.module('myApp', []);
 
 /* Set up a simple controller with a few 

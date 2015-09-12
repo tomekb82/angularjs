@@ -6,6 +6,11 @@ http://gruntjs.com/sample-gruntfile
 To start:
 npm install
 
+
+https://docs.angularjs.org/guide/unit-testing
+
+
+
 tests:
 https://docs.angularjs.org/guide/unit-testing
 https://www.jiwhiz.com/blogs/Unit_Test_AngularJS_Controller_With_Jasmine

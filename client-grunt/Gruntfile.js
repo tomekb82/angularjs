@@ -21,7 +21,7 @@ module.exports = function(grunt){
 			},
 			test:{
 				src: ["app/model/*.ts", "app/test/specs/*.ts", "app/controllers/controllers.ts", "app/controllers/TestController.ts", "app/controllers/app.ts"],
-				reference: "./app/reference.ts" ,
+				reference: "./app/reference.ts" ,				
 				options: {
 					target: 'es5',
 					sourcemap: 'true',
@@ -31,9 +31,10 @@ module.exports = function(grunt){
 		},
 
 		jasmine : {
-			src : ['app/model/**/*.js', "app/controllers/TestController.js"],
+			src : ['app/model/**/*.js', "app/controllers/TestController.js", "app/controllers/app.js"],
 			options : {
 				specs : 'app/test/specs/**/*.js',
+				vendor: ['vendor/types/angular/angular.js', 'vendor/types/angular/angular-mocks.js'],
 				template: require('grunt-template-jasmine-requirejs'),
 				templateOptions: {
 					requireConfig: {
@@ -45,11 +46,14 @@ module.exports = function(grunt){
 		jshint: {
 			all: [
 				'Gruntfile.js',
-				'test/src/**/*.js',
-				'test/specs/**/*.js'
+				'app/model/**/*.js',
+				'app/controllers/TestController.js',
+				'app/controllers/app.js',
+				'app/test/specs/**/*.js'
 				],
 			options: {
-				jshintrc: '.jshintrc'
+				jshintrc: '.jshintrc',
+				vendor: ['vendor/types/angular/angular.js', 'vendor/types/angular/angular-mocks.js'],
 			}
 		}
 	});
@@ -58,6 +62,6 @@ module.exports = function(grunt){
         grunt.loadNpmTasks('grunt-contrib-jshint');
 
         grunt.registerTask("default", ["ts:dev"]);
-        grunt.registerTask('test', ['ts:test', 'jshint', 'jasmine']);
+        grunt.registerTask('test', ['ts:test',/* 'jshint', */'jasmine']);
 	
 };

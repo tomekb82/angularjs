@@ -3,7 +3,7 @@
 // Definitions by: Diego Vilar <http://github.com/diegovilar>, Tony Curtis <http://github.com/daltin>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
-/// <reference path="./angular.d.ts" />
+/// <reference path="angular.d.ts" />
 
 declare module "angular-mocks/ngMock" {
     var _: string;

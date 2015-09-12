@@ -9,10 +9,7 @@ describe('Testing a controller', function() {
    */
   var someServiceMock;
   
-    beforeEach(function () {
-        module('myApp');
-    });
-
+   
  
   // This function will be called before every "it" block.
   // This should be used to "reset" state for your tests.
@@ -24,7 +21,7 @@ describe('Testing a controller', function() {
     someServiceMock = jasmine.createSpyObj('someService', ['someAsyncCall']);
     
     // load the module you're testing.
-    module('myApp');
+    angular.mock.module('myApp');
     
     // INJECT! This part is critical
     // $rootScope - injected to create a new $scope instance.
