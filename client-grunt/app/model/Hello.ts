@@ -1,3 +1,4 @@
+/// <reference path='../reference.ts' />
 
 module test {
 export class Hello {

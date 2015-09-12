@@ -20,7 +20,8 @@ module.exports = function(grunt){
 				}
 			},
 			test:{
-				src: ["test/**/*.ts"],
+				src: ["app/model/*.ts", "app/test/specs/*.ts", "app/controllers/controllers.ts", "app/controllers/TestController.ts"],
+				reference: "./app/reference.ts" ,
 				options: {
 					target: 'es5',
 					sourcemap: 'true',
@@ -30,9 +31,9 @@ module.exports = function(grunt){
 		},
 
 		jasmine : {
-			src : 'test/src/**/*.js',
+			src : ['app/model/**/*.js', "app/controllers/TestController.js"],
 			options : {
-				specs : 'test/specs/**/*.js',
+				specs : 'app/test/specs/**/*.js',
 				template: require('grunt-template-jasmine-requirejs'),
 				templateOptions: {
 					requireConfig: {
