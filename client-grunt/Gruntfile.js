@@ -20,7 +20,7 @@ module.exports = function(grunt){
 				}
 			},
 			test:{
-				src: ["app/model/*.ts", "app/test/specs/*.ts", "app/controllers/controllers.ts", "app/controllers/TestController.ts"],
+				src: ["app/model/*.ts", "app/test/specs/*.ts", "app/controllers/controllers.ts", "app/controllers/TestController.ts", "app/controllers/app.ts"],
 				reference: "./app/reference.ts" ,
 				options: {
 					target: 'es5',
