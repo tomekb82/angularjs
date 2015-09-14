@@ -2,7 +2,7 @@
 
 angular.module('myApp',['controllers', 'services', 'directives', 'constants', 'ui.bootstrap', 'ngResource', 'ui.router'])
 
- .run(function ($rootScope, $location, ENV, VERSION) {
+ .run(function ($rootScope, $location,ENV, VERSION) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
   
@@ -23,7 +23,7 @@ angular.module('myApp',['controllers', 'services', 'directives', 'constants', 'u
                 }
             }
         });
-  })
+   })
 
 
 

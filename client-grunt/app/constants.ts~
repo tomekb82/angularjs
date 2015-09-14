@@ -3,6 +3,8 @@
 angular.module('constants', [])
 
 .constant('ENV', 'dev')
+.constant('test', 'pipipi')
+
 .constant('VERSION', '0.0.1-SNAPSHOT')
 
 ;

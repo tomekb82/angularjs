@@ -7,6 +7,7 @@ https://docs.angularjs.org/guide/unit-testing
 
 To start:
 npm install
+bower install
 
 
 Run:

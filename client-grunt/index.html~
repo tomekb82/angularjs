@@ -46,6 +46,7 @@
 	</head>
 	<body body ng-app="myApp" >
 		
+env = {{ENV}}
 	 <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
 	 <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
@@ -53,6 +54,7 @@
             <div class="well" ui-view="content"></div>
 
             <div class="footer">
+{{test}}
 			<div ng-controller="AnnotationController"> 
 			{{vm.message}}
 
