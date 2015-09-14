@@ -10,6 +10,8 @@
 //grunt-start
 /// <reference path="common/navbar/navbar.html.ts" />
 /// <reference path="core/main/main.html.ts" />
+/// <reference path="common/language/language.controller.ts" />
+/// <reference path="common/language/language.service.ts" />
 /// <reference path="common/navbar/navbar.controller.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />
