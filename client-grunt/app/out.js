@@ -227,9 +227,152 @@ angular.module('myApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprech
     tmhDynamicLocaleProvider.useCookieStorage();
     tmhDynamicLocaleProvider.storageKey('NG_TRANSLATE_LANG_KEY');
 });
+/// <reference path='../../reference.ts' />
+angular.module('myApp')
+    .factory('AlertService', function ($timeout, $sce, $translate) {
+    var exports = {
+        factory: factory,
+        add: addAlert,
+        closeAlert: closeAlert,
+        closeAlertByIndex: closeAlertByIndex,
+        clear: clear,
+        get: get,
+        success: success,
+        error: error,
+        info: info,
+        warning: warning
+    }, alertId = 0, alerts = [], timeout = 5000;
+    function clear() {
+        alerts = [];
+    }
+    function get() {
+        console.log('AlertService: get');
+        return alerts;
+    }
+    function success(msg, params) {
+        this.add({
+            type: "success",
+            msg: msg,
+            params: params,
+            timeout: timeout
+        });
+    }
+    function error(msg, params) {
+        this.add({
+            type: "danger",
+            msg: msg,
+            params: params,
+            timeout: timeout
+        });
+    }
+    function warning(msg, params) {
+        this.add({
+            type: "warning",
+            msg: msg,
+            params: params,
+            timeout: timeout
+        });
+    }
+    function info(msg, params) {
+        this.add({
+            type: "info",
+            msg: msg,
+            params: params,
+            timeout: timeout
+        });
+    }
+    function factory(alertOptions) {
+        return alerts.push({
+            type: alertOptions.type,
+            msg: $sce.trustAsHtml(alertOptions.msg),
+            id: alertOptions.alertId,
+            timeout: alertOptions.timeout,
+            close: function () {
+                return exports.closeAlert(this);
+            }
+        });
+    }
+    function addAlert(alertOptions) {
+        alertOptions.alertId = alertId++;
+        alertOptions.msg = $translate.instant(alertOptions.msg, alertOptions.params);
+        var that = this;
+        this.factory(alertOptions);
+        if (alertOptions.timeout && alertOptions.timeout > 0) {
+            $timeout(function () {
+                that.closeAlert(alertOptions.alertId);
+            }, alertOptions.timeout);
+        }
+    }
+    function closeAlert(id) {
+        return this.closeAlertByIndex(alerts.indexOf(id));
+    }
+    function closeAlertByIndex(index) {
+        return alerts.splice(index, 1);
+    }
+    return exports;
+});
+/// <reference path='../../reference.ts' />
+angular.module('myApp')
+    .directive('tbAlertToast', function (AlertService, $rootScope, $translate) {
+    return {
+        restrict: 'E',
+        template: '<div class="alerts" ng-cloak="">' +
+            '<alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre>{{ alert.msg }}</pre></alert>' +
+            '</div>',
+        controller: ['$scope',
+            function ($scope) {
+                var alertOptions = {
+                    type: "info",
+                    msg: "aaa",
+                    params: 2,
+                    timeout: 2 };
+                AlertService.addAlert(null);
+                $scope.alerts = AlertService.get();
+                var addErrorAlert = function (message, key, data) {
+                    AlertService.error(key, data);
+                };
+                var cleanHttpErrorListener = $rootScope.$on('myApp.httpError', function (event, httpResponse) {
+                    var i;
+                    switch (httpResponse.status) {
+                        case 0:
+                            break;
+                        case 400:
+                            if (httpResponse.data && httpResponse.data.fieldErrors) {
+                                for (i = 0; i < httpResponse.data.fieldErrors.length; i++) {
+                                    var fieldError = httpResponse.data.fieldErrors[i];
+                                    var convertedField = fieldError.field.replace(/\[\d*\]/g, "[]");
+                                    var fieldName = $translate.instant('error.fieldName.' + fieldError.objectName + '.' + convertedField);
+                                }
+                            }
+                            else if (httpResponse.data && httpResponse.data.message) {
+                            }
+                            else {
+                            }
+                            break;
+                        default:
+                            if (httpResponse.data && httpResponse.data.message) {
+                            }
+                            else {
+                            }
+                    }
+                });
+                $scope.$on('$destroy', function () {
+                });
+            }
+        ]
+    };
+});
+var navbar;
+(function (navbar) {
+    navbar.html = '<nav class="navbar navbar-default" role="navigation">    <div class="container">        <div class="navbar-header">            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">                <span class="sr-only">Toggle navigation</span>                <span class="icon-bar"></span>                <span class="icon-bar"></span>                <span class="icon-bar"></span>            </button>            <a class="navbar-brand" href="#/"><span translate="global.title">MyApp</span> <span class="navbar-version">v{{VERSION}}</span></a>        </div>        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">            <ul class="nav navbar-nav nav-pills navbar-right">                <li ui-sref-active="active">                    <a ui-sref="home">                        <span class="glyphicon glyphicon-home"></span>                        <span translate="global.menu.home">Home2</span>                    </a>                </li>                <li ui-sref-active="active">                    <a ui-sref="photos">                        <span class="glyphicon glyphicon-home"></span>                        <span translate="global.menu.photos">Photos2</span>                    </a>                </li>                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-th-list"></span>                                    <span class="hidden-tablet" translate="global.menu.entities.main">                                        Entities                                    </span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li ui-sref-active="active" ><a ui-sref="photo"><span class="glyphicon glyphicon-asterisk"></span>                        &#xA0;<span translate="global.menu.entities.photo">photo</span></a></li>                        <!-- JHipster will add entities to the menu here -->                    </ul>                </li>                <li ng-class="{active: $state.includes(\'account\')}" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-user"></span>                                    <span class="hidden-tablet" translate="global.menu.account.main">                                        Account2                                    </span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings"><span class="glyphicon glyphicon-wrench"></span>                            &#xA0;<span translate="global.menu.account.settings">Settings</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password"><span class="glyphicon glyphicon-lock"></span>                            &#xA0;<span translate="global.menu.account.password">Password</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions"><span class="glyphicon glyphicon-cloud"></span>                            &#xA0;<span translate="global.menu.account.sessions">Sessions</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>                            &#xA0;<span translate="global.menu.account.logout">Log out</span></a></li>                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>                            &#xA0;<span translate="global.menu.account.login">Authenticate</span></a></li>                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span class="glyphicon glyphicon-plus-sign"></span>                            &#xA0;<span translate="global.menu.account.register">Register</span></a></li>                    </ul>                </li>                <li ng-class="{active: $state.includes(\'admin\')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-tower"></span>                                    <span class="hidden-tablet" translate="global.menu.admin.main">Administration</span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                       <!-- <li ui-sref-active="active"><a ui-sref="tracker"><span class="glyphicon glyphicon-eye-open"></span>                                &nbsp;<span translate="global.menu.admin.tracker">User tracker</span></a></li>                        <li ui-sref-active="active"><a ui-sref="metrics"><span class="glyphicon glyphicon-dashboard"></span>                            &#xA0;<span translate="global.menu.admin.metrics">Metrics</span></a></li>                        <li ui-sref-active="active"><a ui-sref="health"><span class="glyphicon glyphicon-heart"></span>                            &#xA0;<span translate="global.menu.admin.health">Health</span></a></li>                        <li ui-sref-active="active"><a ui-sref="configuration"><span class="glyphicon glyphicon-list-alt"></span>                            &#xA0;<span translate="global.menu.admin.configuration">Configuration</span></a></li>                        <li ui-sref-active="active"><a ui-sref="audits"><span class="glyphicon glyphicon-bell"></span>                            &#xA0;<span translate="global.menu.admin.audits">Audits</span></a></li>                        <li ui-sref-active="active"><a ui-sref="logs"><span class="glyphicon glyphicon-tasks"></span>                            &#xA0;<span translate="global.menu.admin.logs">Logs</span></a></li>                        <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>                            &#xA0;<span translate="global.menu.admin.apidocs">API</span></a></li>-->                    </ul>                </li>                <li ui-sref-active="active" class="dropdown pointer" ng-controller="LanguageController">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-flag"></span>                                    <span class="hidden-tablet" translate="global.menu.language">Language2</span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li active-menu="{{language}}" ng-repeat="language in languages">                            <a href="" ng-click="changeLanguage(language)">{{language | findLanguageFromKey}}</a>                        </li>                    </ul>                </li>            </ul>        </div>    </div></nav>';
+})(navbar || (navbar = {}));
+var main;
+(function (main) {
+    main.html = '<div ng-cloak>    <div class="row">        <div class="col-md-4">            <span class="hipster img-responsive img-rounded"></span>        </div>        <div class="col-md-8">            <h1>Welcome, My App!</h1>	    <!--<h1 translate="main.title">Welcome, My App!</h1>-->            <!--<p class="lead" translate="main.subtitle">This is your homepage</p>            <div ng-switch="isAuthenticated()">                <div class="alert alert-success" ng-switch-when="true" translate="main.logged.message" translate-values="{username: \'{{account.login}}\'}">                    You are logged in as user "{{account.login}}".                </div>                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">                    If you want to <a href="#/login">authenticate</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").                </div>                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">                    You don\'t have an account yet? <a href="#/register">Register a new account</a>                </div>            </div>            <p translate="main.question">                If you have any question on JHipster 2:            </p>            <ul>                <li><a href="http://jhipster.github.io/" target="_blank" translate="main.link.homepage">JHipster homepage</a></li>                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" translate="main.link.stackoverflow">JHipster on Stack Overflow</a></li>                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" translate="main.link.bugtracker">JHipster bug tracker</a></li>                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" translate="main.link.chat">JHipster public chat room</a></li>                <li><a href="https://twitter.com/java_hipster" target="_blank"  translate="main.link.contact">contact @java_hipster on Twitter</a></li>            </ul>            <p>             <span translate="main.like">If you like JHipster, don\'t forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github">Github</a>!            </p>-->	        </div>    </div></div>';
+})(main || (main = {}));
+'use strict';
 angular.module('myApp')
     .controller('NavbarController', function ($scope) {
-    console.log('NavbarController');
 });
 var Controllers;
 (function (Controllers) {
@@ -317,10 +460,6 @@ app.factory('someService', function ($timeout, $q) {
 angular.module('myApp')
     .controller('MainController', function ($scope) {
 });
-var main;
-(function (main) {
-    main.html = '<div ng-cloak>    <div class="row">        <div class="col-md-4">            <span class="hipster img-responsive img-rounded"></span>        </div>        <div class="col-md-8">            <h1>Welcome, My App!</h1>	    <!--<h1 translate="main.title">Welcome, My App!</h1>-->            <!--<p class="lead" translate="main.subtitle">This is your homepage</p>            <div ng-switch="isAuthenticated()">                <div class="alert alert-success" ng-switch-when="true" translate="main.logged.message" translate-values="{username: \'{{account.login}}\'}">                    You are logged in as user "{{account.login}}".                </div>                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">                    If you want to <a href="#/login">authenticate</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").                </div>                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">                    You don\'t have an account yet? <a href="#/register">Register a new account</a>                </div>            </div>            <p translate="main.question">                If you have any question on JHipster 2:            </p>            <ul>                <li><a href="http://jhipster.github.io/" target="_blank" translate="main.link.homepage">JHipster homepage</a></li>                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" translate="main.link.stackoverflow">JHipster on Stack Overflow</a></li>                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" translate="main.link.bugtracker">JHipster bug tracker</a></li>                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" translate="main.link.chat">JHipster public chat room</a></li>                <li><a href="https://twitter.com/java_hipster" target="_blank"  translate="main.link.contact">contact @java_hipster on Twitter</a></li>            </ul>            <p>             <span translate="main.like">If you like JHipster, don\'t forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github">Github</a>!            </p>-->	        </div>    </div></div>';
-})(main || (main = {}));
 'use strict';
 angular.module('myApp')
     .config(function ($stateProvider) {
@@ -385,13 +524,16 @@ services.service('logService', LogService);
 /// <reference path="common/language/language.controller.ts" />
 /// <reference path="common/language/language.service.ts" />
 /// <reference path="main.ts" />
+/// <reference path="common/alert/alert.service.ts" />
+/// <reference path="common/alert/alert.directive.ts" />
+/// <reference path="common/navbar/navbar.html.ts" />
+/// <reference path="core/main/main.html.ts" />
 /// <reference path="common/navbar/navbar.controller.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />
 /// <reference path="controllers/annotations/AnnotationController.ts" />
 /// <reference path="controllers/app.ts" />
 /// <reference path="core/main/main.controller.ts" />
-/// <reference path="core/main/main.html.ts" />
 /// <reference path="core/main/main.ts" />
 /// <reference path="directives/testme.html.ts" />
 /// <reference path="directives/testme.ts" />
