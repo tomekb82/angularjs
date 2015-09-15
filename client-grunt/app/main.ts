@@ -1,12 +1,14 @@
 /// <reference path='./reference.ts' />
 
-angular.module('myApp',['controllers', 'services', 'directives', 'constants', 
-'LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.translate', 'ui.bootstrap', 'ngResource', 'ui.router', 'ngCookies',
-'ngCacheBuster', 'ngFileUpload', 'infinite-scroll'])
+angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.translate', 'ui.bootstrap', 'ngResource', 'ui.router', 'ngCookies',
+'ngCacheBuster', 'ngFileUpload', 'infinite-scroll',
+'controllers', 'services', 'directives', 'constants', 'language',
+])
 
- .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, ENV, VERSION) {
+ .run(function ($rootScope, $location, $window, $http, $state, $translate, Language, ENV, VERSION, tmhDynamicLocale) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
+
 	$rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
@@ -46,12 +48,15 @@ angular.module('myApp',['controllers', 'services', 'directives', 'constants',
         };
   
   })
- .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,$translateProvider, tmhDynamicLocaleProvider) {
+ .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,$translateProvider, tmhDynamicLocaleProvider,httpRequestInterceptorCacheBusterProvider) {
 
         //enable CSRF
         $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
 		
+        //Cache everything except rest api requests
+        httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
+
         $urlRouterProvider.otherwise('/');
         $stateProvider.state('site', {
             'abstract': true,

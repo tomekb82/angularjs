@@ -1,10 +1,11 @@
-'use strict';
 
-angular.module('myApp')
+/// <reference path='../../reference.ts' />
+
+angular.module('language',[])
     .controller('LanguageController', function ($scope, $translate, Language, tmhDynamicLocale) {
         $scope.changeLanguage = function (languageKey) {
             $translate.use(languageKey);
-	console.log("lang="+languageKey);
+	    console.log("lang="+languageKey);
             tmhDynamicLocale.set(languageKey);
         };
 

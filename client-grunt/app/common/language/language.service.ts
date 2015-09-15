@@ -1,12 +1,13 @@
-'use strict';
 
-angular.module('myApp')
+/// <reference path='../../reference.ts' />
+
+angular.module('language')
     .factory('Language', function ($q, $http, $translate, LANGUAGES) {
         return {
             getCurrent: function () {
                 var deferred = $q.defer();
                 var language = $translate.storage().get('NG_TRANSLATE_LANG_KEY');
-
+		console.log("LANG = " + language);
                 if (angular.isUndefined(language)) {
                     language = 'en';
                 }
@@ -27,7 +28,7 @@ angular.module('myApp')
  They are written in English to avoid character encoding issues (not a perfect solution)
  */
     .constant('LANGUAGES', [
-        'en', 'pl'
+        'en', 'pl', 'fr'
         //JHipster will add new languages here
     ]
 );
