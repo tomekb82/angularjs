@@ -76,6 +76,7 @@ angular.module('myApp')
         }
 
         function addAlert(alertOptions) {
+		console.log('AlertService: addAlert');
             alertOptions.alertId = alertId++;
             alertOptions.msg = $translate.instant(alertOptions.msg, alertOptions.params);
             var that = this;

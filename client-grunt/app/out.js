@@ -216,6 +216,8 @@ angular.module('myApp', ['LocalStorageModule', 'tmh.dynamicLocale', 'pascalprech
                 }]
         }
     });
+    $httpProvider.interceptors.push('errorHandlerInterceptor');
+    $httpProvider.interceptors.push('notificationInterceptor');
     $translateProvider.useLoader('$translatePartialLoader', {
         urlTemplate: 'i18n/{lang}/{part}.json'
     });
@@ -293,6 +295,7 @@ angular.module('myApp')
         });
     }
     function addAlert(alertOptions) {
+        console.log('AlertService: addAlert');
         alertOptions.alertId = alertId++;
         alertOptions.msg = $translate.instant(alertOptions.msg, alertOptions.params);
         var that = this;
@@ -321,20 +324,21 @@ angular.module('myApp')
             '</div>',
         controller: ['$scope',
             function ($scope) {
-                var alertOptions = {
-                    type: "info",
-                    msg: "aaa",
-                    params: 2,
-                    timeout: 2 };
-                AlertService.addAlert(null);
-                $scope.alerts = AlertService.get();
                 var addErrorAlert = function (message, key, data) {
                     AlertService.error(key, data);
                 };
+                var alertOptions = {
+                    type: "info",
+                    msg: "Witaj w mojej aplikacji...",
+                    params: 2,
+                    timeout: 0 };
+                AlertService.add(alertOptions);
+                $scope.alerts = AlertService.get();
                 var cleanHttpErrorListener = $rootScope.$on('myApp.httpError', function (event, httpResponse) {
                     var i;
                     switch (httpResponse.status) {
                         case 0:
+                            addErrorAlert("", "Server not reachable", 'error.serverNotReachable');
                             break;
                         case 400:
                             if (httpResponse.data && httpResponse.data.fieldErrors) {
@@ -342,15 +346,19 @@ angular.module('myApp')
                                     var fieldError = httpResponse.data.fieldErrors[i];
                                     var convertedField = fieldError.field.replace(/\[\d*\]/g, "[]");
                                     var fieldName = $translate.instant('error.fieldName.' + fieldError.objectName + '.' + convertedField);
+                                    addErrorAlert(fieldError.field + ' should not be empty', 'error.' + fieldError.message, { fieldName: fieldName });
                                 }
                             }
                             else if (httpResponse.data && httpResponse.data.message) {
+                                addErrorAlert(httpResponse.data.message, httpResponse.data.message, httpResponse.data);
                             }
                             else {
+                                addErrorAlert("", "", httpResponse.data);
                             }
                             break;
                         default:
                             if (httpResponse.data && httpResponse.data.message) {
+                                addErrorAlert("", httpResponse.data.message, httpResponse.data);
                             }
                             else {
                             }
@@ -370,6 +378,30 @@ var main;
 (function (main) {
     main.html = '<div ng-cloak>    <div class="row">        <div class="col-md-4">            <span class="hipster img-responsive img-rounded"></span>        </div>        <div class="col-md-8">            <h1>Welcome, My App!</h1>	    <!--<h1 translate="main.title">Welcome, My App!</h1>-->            <!--<p class="lead" translate="main.subtitle">This is your homepage</p>            <div ng-switch="isAuthenticated()">                <div class="alert alert-success" ng-switch-when="true" translate="main.logged.message" translate-values="{username: \'{{account.login}}\'}">                    You are logged in as user "{{account.login}}".                </div>                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">                    If you want to <a href="#/login">authenticate</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").                </div>                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">                    You don\'t have an account yet? <a href="#/register">Register a new account</a>                </div>            </div>            <p translate="main.question">                If you have any question on JHipster 2:            </p>            <ul>                <li><a href="http://jhipster.github.io/" target="_blank" translate="main.link.homepage">JHipster homepage</a></li>                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" translate="main.link.stackoverflow">JHipster on Stack Overflow</a></li>                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" translate="main.link.bugtracker">JHipster bug tracker</a></li>                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" translate="main.link.chat">JHipster public chat room</a></li>                <li><a href="https://twitter.com/java_hipster" target="_blank"  translate="main.link.contact">contact @java_hipster on Twitter</a></li>            </ul>            <p>             <span translate="main.like">If you like JHipster, don\'t forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github">Github</a>!            </p>-->	        </div>    </div></div>';
 })(main || (main = {}));
+/// <reference path='../../reference.ts' />
+angular.module('myApp')
+    .factory('errorHandlerInterceptor', function ($q, $rootScope) {
+    return {
+        'responseError': function (response) {
+            console.log('errorHandlerInterceptor');
+            $rootScope.$emit('myApp.httpError', response);
+            return $q.reject(response);
+        }
+    };
+});
+/// <reference path='../../reference.ts' />
+angular.module('myApp')
+    .factory('notificationInterceptor', function ($q, AlertService) {
+    return {
+        response: function (response) {
+            var alertKey = response.headers('X-myApp-alert');
+            if (angular.isString(alertKey)) {
+                AlertService.success(alertKey, { param: response.headers('X-myApp-params') });
+            }
+            return response;
+        },
+    };
+});
 'use strict';
 angular.module('myApp')
     .controller('NavbarController', function ($scope) {
@@ -528,6 +560,8 @@ services.service('logService', LogService);
 /// <reference path="common/alert/alert.directive.ts" />
 /// <reference path="common/navbar/navbar.html.ts" />
 /// <reference path="core/main/main.html.ts" />
+/// <reference path="common/interceptor/errorhandler.interceptor.ts" />
+/// <reference path="common/interceptor/notification.interceptor.ts" />
 /// <reference path="common/navbar/navbar.controller.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />

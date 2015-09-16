@@ -13,6 +13,8 @@
 //grunt-start
 /// <reference path="common/navbar/navbar.html.ts" />
 /// <reference path="core/main/main.html.ts" />
+/// <reference path="common/interceptor/errorhandler.interceptor.ts" />
+/// <reference path="common/interceptor/notification.interceptor.ts" />
 /// <reference path="common/navbar/navbar.controller.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />

@@ -74,7 +74,11 @@ angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.
         });
 
 
-	// Initialize angular-translate
+		$httpProvider.interceptors.push('errorHandlerInterceptor');
+        //$httpProvider.interceptors.push('authExpiredInterceptor');
+        $httpProvider.interceptors.push('notificationInterceptor');
+		
+	    // Initialize angular-translate
         $translateProvider.useLoader('$translatePartialLoader', {
             urlTemplate: 'i18n/{lang}/{part}.json'
         });
