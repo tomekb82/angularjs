@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-framework="typescript">
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Typescript & AngularJS - grunt client</title>
+		<meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css assets/styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css assets/styles/main.css -->
+        <link rel="stylesheet" href="assets/styles/main.css">
+        <!-- endbuild -->
+		
+		<!--Scripts -->
+		<script src="vendor/types/jquery/jquery.js"></script>
+		<script src="vendor/types/angular/angular.js"></script>
+		
+		
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-translate/angular-translate.js"></script>
+        <script src="bower_components/messageformat/messageformat.js"></script>
+        <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+        <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+        <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+        <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+        <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+        <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+        <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+		
+
+        <script src="bower_components/messageformat/locale/en.js"></script>
+        <script src="bower_components/messageformat/locale/pl.js"></script>
+        <script src="bower_components/messageformat/locale/fr.js"></script>
+		
+		<script src="vendor/types/jasmine/jasmine.js"></script>
+		<script src="vendor/boostrap/js/bootstrap.min.js"></script>
+		
+		<!--our code -->
+		<script src="app/out.js"></script>
+
+
+	</head>
+	<body body ng-app="myApp" >
+		
+	 <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
+	 <div ui-view="navbar" ng-cloak=""></div>
+        <div class="container">
+            <tb-alert-toast></tb-alert-toast>
+            <div class="well" ui-view="content"></div>
+
+            <div class="footer">
+			<div ng-controller="AnnotationController"> 
+			{{vm.message}}
+
+
+		</div>
+	
+		
+		<testme></testme>
+                <p translate="footer">This is your footer</p>
+            </div>
+        </div>
+		
+	</body>
+</html>

@@ -1,0 +1,1 @@
+"C:\Users\tomasz.belina\Documents\GitHub\angularjs\client-grunt\app\reference.ts" --sourcemap --emitDecoratorMetadata --removeComments --experimentalDecorators --target ES5 --out "C:\Users\tomasz.belina\Documents\GitHub\angularjs\client-grunt\app\out.js"
