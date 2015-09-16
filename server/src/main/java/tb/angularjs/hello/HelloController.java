@@ -1,4 +1,4 @@
-package hello;
+package tb.angularjs.hello;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-public class    HelloController {
+@RequestMapping("/api")
+public class HelloController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();

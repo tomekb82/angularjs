@@ -1,4 +1,4 @@
-package hello;
+package tb.angularjs;
 
 import java.util.Arrays;
 

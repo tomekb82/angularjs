@@ -1,4 +1,4 @@
-package hello;
+package tb.angularjs.hello;
 
 /**
  * Created by tomek on 02.09.15.
