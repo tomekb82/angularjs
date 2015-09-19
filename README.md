@@ -3,8 +3,8 @@
 #apache2
 1) konfiguracja proxy:
 2) dodano 2 moduly: mod_proxy, mod_proxy_http
-3) zmiany w 'mods-enabled/proxy.conf':
-  ProxyRequests Off
+3) zmiany w 'mods-enabled/proxy.conf' (ProxyRequests moze byc on lub off):
+  ProxyRequests On
   ProxyVia On
         <Proxy *>
            Order allow,deny
