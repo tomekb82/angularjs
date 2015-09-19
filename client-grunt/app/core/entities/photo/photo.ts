@@ -37,11 +37,11 @@ angular.module('myApp')
                     }
                 },
                 resolve: {
-                    /*translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                         $translatePartialLoader.addPart('photo');
                         $translatePartialLoader.addPart('global');
                         return $translate.refresh();
-                    }]*/
+                    }]
                 }
             })
             .state('photo.detail', {
