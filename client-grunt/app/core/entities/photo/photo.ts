@@ -3,7 +3,7 @@
 angular.module('myApp')
     .config(function ($stateProvider) {
         $stateProvider
-
+/*
         	.state('photos', {
                 url: "/photos",
         		parent: 'site',
@@ -21,7 +21,7 @@ angular.module('myApp')
                         controller: "photosListCtrl"
                     }
             	}
-            })
+            })*/
 
             .state('photo', {
                 parent: 'entity',
@@ -48,12 +48,12 @@ angular.module('myApp')
                 parent: 'entity',
                 url: '/photo/{id}',
                 data: {
-                    roles: ['ROLE_USER'],
+                    //roles: ['ROLE_USER'],
                     pageTitle: 'myApp.photo.detail.title'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'app/core/entities/photo/photo-detail.html',
+                        templateUrl: 'app/core/entities/photo/photo_detail.html',
                         controller: 'PhotoDetailController'
                     }
                 },
@@ -75,7 +75,7 @@ angular.module('myApp')
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
-                        templateUrl: 'app/core/entities/photo/photo-dialog.html',
+                        templateUrl: 'app/core/entities/photo/photo_dialog.html',
                         controller: 'PhotoDialogController',
                         size: 'lg',
                         resolve: {
@@ -98,7 +98,7 @@ angular.module('myApp')
                 },
                 onEnter: ['$stateParams', '$state', '$modal', function($stateParams, $state, $modal) {
                     $modal.open({
-                        templateUrl: 'app/core/entities/photo/photo-dialog.html',
+                        templateUrl: 'app/core/entities/photo/photo_dialog.html',
                         controller: 'PhotoDialogController',
                         size: 'lg',
                         resolve: {

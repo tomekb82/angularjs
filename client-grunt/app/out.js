@@ -373,7 +373,7 @@ var navbar;
 })(navbar || (navbar = {}));
 var photo_detail;
 (function (photo_detail) {
-    photo_detail.html = '<div>    </div>';
+    photo_detail.html = '<div>    {{photo.name}}    {{photo.type}}    {{photo.description}}</div>';
 })(photo_detail || (photo_detail = {}));
 var photo_dialog;
 (function (photo_dialog) {
@@ -381,7 +381,7 @@ var photo_dialog;
 })(photo_dialog || (photo_dialog = {}));
 var photos;
 (function (photos) {
-    photos.html = '<div>    <h2 translate="myApp.photo.home.title">Photos</h2>    <div class="container">        <div class="row">            <div class="col-md-4">                <button class="btn btn-primary" ui-sref="photo.new">                    <span class="glyphicon glyphicon-flash"></span> <span translate="myApp.photo.home.createLabel">Create a new Photo</span>                </button>            </div>        </div>    </div>    <div class="modal fade" id="deletePhotoConfirmation">        <div class="modal-dialog">            <div class="modal-content">                <form name="deleteForm" ng-submit="confirmDelete(photo.id)">                    <div class="modal-header">                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"                                ng-click="clear()">&times;</button>                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>                    </div>                    <div class="modal-body">                        <p translate="jhipsterphotoApp.photo.delete.question" translate-values="{id: \'{{photo.id}}\'}">Are you sure you want to delete this Photo?</p>                    </div>                    <div class="modal-footer">                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>                        </button>                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>                        </button>                    </div>                </form>            </div>        </div>    </div>    <div class="table-responsive">        <table class="table table-striped">            <thead>                <tr>                    <th translate="global.field.id">ID</th>                    <th translate="myApp.photo.name">Name</th>	            <th translate="myApp.photo.type">Type</th>                    <th translate="myApp.photo.description">Description</th>                    <th></th>                </tr>            </thead>            <tbody>                <tr ng-repeat="photo in photos">                    <td><a ui-sref="photo.detail({id:photo.id})">{{photo.id}}</a></td>                    <td>{{photo.name}}</td>		    <td>{{photo.type}}</td>                    <td>{{photo.description}}</td>                    <td>                        <button type="submit"                                ui-sref="photo.detail({id:photo.id})"                                class="btn btn-info btn-sm">                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>                        </button>                        <button type="submit"                                ui-sref="photo.edit({id:photo.id})"                                class="btn btn-primary btn-sm">                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>                        </button>                        <button type="submit"                                ng-click="delete(photo.id)"                                class="btn btn-danger btn-sm">                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>                        </button>                    </td>                </tr>            </tbody>        </table>    </div></div>';
+    photos.html = '<div>    <h2 translate="myApp.photo.home.title">Photos</h2>    <div class="container">        <div class="row">            <div class="col-md-4">                <button class="btn btn-primary" ui-sref="photo.new">                    <span class="glyphicon glyphicon-flash"></span> <span translate="myApp.photo.home.createLabel">Create a new Photo</span>                </button>            </div>        </div>    </div>    <div class="modal fade" id="deletePhotoConfirmation">        <div class="modal-dialog">            <div class="modal-content">                <form name="deleteForm" ng-submit="confirmDelete(photo.id)">                    <div class="modal-header">                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"                                ng-click="clear()">&times;</button>                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>                    </div>                    <div class="modal-body">                        <p translate="jhipsterphotoApp.photo.delete.question" translate-values="{id: \'{{photo.id}}\'}">Are you sure you want to delete this Photo?</p>                    </div>                    <div class="modal-footer">                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>                        </button>                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>                        </button>                    </div>                </form>            </div>        </div>    </div>    <div class="table-responsive">        <table class="table table-striped">            <thead>                <tr>                    <th translate="global.field.id">ID</th>                    <th translate="myApp.photo.name">Name</th>	            <th translate="myApp.photo.type">Type</th>                    <th translate="myApp.photo.description">Description</th>                    <th></th>                </tr>            </thead>            <tbody>                <tr ng-repeat="photo in photos">                    <td>{{photo.id}}</td>                    <td>{{photo.name}}</td>		    <td>{{photo.type}}</td>                    <td>{{photo.description}}</td>                    <td>                        <button type="submit"                                ui-sref="photo.detail({id:photo.id})"                                class="btn btn-info btn-sm">                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>                        </button>                        <button type="submit"                                ui-sref="photo.edit({id:photo.id})"                                class="btn btn-primary btn-sm">                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>                        </button>                        <button type="submit"                                ng-click="delete(photo.id)"                                class="btn btn-danger btn-sm">                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>                        </button>                    </td>                </tr>            </tbody>        </table>    </div></div>';
 })(photos || (photos = {}));
 var main;
 (function (main) {
@@ -389,7 +389,7 @@ var main;
 })(main || (main = {}));
 'use strict';
 angular.module('myApp')
-    .factory('Photo', function ($resource) {
+    .factory('Photo', function ($resource, DateUtils) {
     return $resource('api/photos/:id', {}, {
         'query': { method: 'GET', isArray: true },
         'get': {
@@ -445,6 +445,37 @@ angular.module('myApp')
 'use strict';
 angular.module('myApp')
     .controller('NavbarController', function ($scope) {
+});
+'use strict';
+angular.module('myApp')
+    .service('DateUtils', function () {
+    this.convertLocaleDateToServer = function (date) {
+        if (date) {
+            var utcDate = new Date();
+            utcDate.setUTCDate(date.getDate());
+            utcDate.setUTCMonth(date.getMonth());
+            utcDate.setUTCFullYear(date.getFullYear());
+            return utcDate;
+        }
+        else {
+            return null;
+        }
+    };
+    this.convertLocaleDateFromServer = function (date) {
+        if (date) {
+            var dateString = date.split("-");
+            return new Date(dateString[0], dateString[1] - 1, dateString[2]);
+        }
+        return null;
+    };
+    this.convertDateTimeFromServer = function (date) {
+        if (date) {
+            return new Date(date);
+        }
+        else {
+            return null;
+        }
+    };
 });
 var Controllers;
 (function (Controllers) {
@@ -538,6 +569,20 @@ angular.module('myApp')
     });
 });
 'use strict';
+angular.module('myApp')
+    .controller('PhotoDetailController', function ($scope, $rootScope, $stateParams, entity, Photo) {
+    $scope.photo = entity;
+    $scope.load = function (id) {
+        console.log('PhotoDetailController: load()');
+        Photo.get({ id: id }, function (result) {
+            $scope.photo = result;
+        });
+    };
+    $rootScope.$on('myApp:photoUpdate', function (event, result) {
+        $scope.photo = result;
+    });
+});
+'use strict';
 angular.module('myApp').controller('PhotoDialogController', ['$scope', '$stateParams', '$modalInstance', 'entity', 'Photo',
     function ($scope, $stateParams, $modalInstance, entity, Photo) {
         $scope.photo = entity;
@@ -599,24 +644,6 @@ angular.module('myApp')
 angular.module('myApp')
     .config(function ($stateProvider) {
     $stateProvider
-        .state('photos', {
-        url: "/photos",
-        parent: 'site',
-        views: {
-            'content@': {
-                templateUrl: 'app/core/photos/photos.view.html'
-            }
-        },
-    })
-        .state('photos.list', {
-        url: '/list',
-        views: {
-            "content@photos": {
-                templateUrl: "app/core/photos/photos-list/photos-list.view.html",
-                controller: "photosListCtrl"
-            }
-        }
-    })
         .state('photo', {
         parent: 'entity',
         url: '/photos',
@@ -641,12 +668,11 @@ angular.module('myApp')
         parent: 'entity',
         url: '/photo/{id}',
         data: {
-            roles: ['ROLE_USER'],
             pageTitle: 'myApp.photo.detail.title'
         },
         views: {
             'content@': {
-                templateUrl: 'app/core/entities/photo/photo-detail.html',
+                templateUrl: 'app/core/entities/photo/photo_detail.html',
                 controller: 'PhotoDetailController'
             }
         },
@@ -668,7 +694,7 @@ angular.module('myApp')
         },
         onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                 $modal.open({
-                    templateUrl: 'app/core/entities/photo/photo-dialog.html',
+                    templateUrl: 'app/core/entities/photo/photo_dialog.html',
                     controller: 'PhotoDialogController',
                     size: 'lg',
                     resolve: {
@@ -691,7 +717,7 @@ angular.module('myApp')
         },
         onEnter: ['$stateParams', '$state', '$modal', function ($stateParams, $state, $modal) {
                 $modal.open({
-                    templateUrl: 'app/core/entities/photo/photo-dialog.html',
+                    templateUrl: 'app/core/entities/photo/photo_dialog.html',
                     controller: 'PhotoDialogController',
                     size: 'lg',
                     resolve: {
@@ -786,11 +812,13 @@ services.service('logService', LogService);
 /// <reference path="common/interceptor/errorhandler.interceptor.ts" />
 /// <reference path="common/interceptor/notification.interceptor.ts" />
 /// <reference path="common/navbar/navbar.controller.ts" />
+/// <reference path="common/util/dateutil.service.ts" />
 /// <reference path="controllers/MainController.ts" />
 /// <reference path="controllers/TestController.ts" />
 /// <reference path="controllers/annotations/AnnotationController.ts" />
 /// <reference path="controllers/app.ts" />
 /// <reference path="core/entities/entity.ts" />
+/// <reference path="core/entities/photo/photo-detail.controller.ts" />
 /// <reference path="core/entities/photo/photo-dialog.controller.ts" />
 /// <reference path="core/entities/photo/photo.controller.ts" />
 /// <reference path="core/entities/photo/photo.ts" />
