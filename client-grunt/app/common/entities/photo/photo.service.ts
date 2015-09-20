@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('myApp')
-    .factory('Photo', function ($resource/*, DateUtils*/) {
+    .factory('Photo', function ($resource, DateUtils) {
         return $resource('api/photos/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
-                method: 'GET',
+                method: 'GET', 
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
                     return data;

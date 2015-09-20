@@ -1,12 +1,12 @@
 <div>
 
-    <h2 translate="jhipsterphotoApp.photo.home.title">Photos</h2>
+    <h2 translate="myApp.photo.home.title">Photos</h2>
 
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" ui-sref="photo.new">
-                    <span class="glyphicon glyphicon-flash"></span> <span translate="jhipsterphotoApp.photo.home.createLabel">Create a new Photo</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="myApp.photo.home.createLabel">Create a new Photo</span>
                 </button>
             </div>
         </div>
@@ -42,18 +42,18 @@
             <thead>
                 <tr>
                     <th translate="global.field.id">ID</th>
-                    <th translate="jhipsterphotoApp.photo.name">Name</th>
-                    <th translate="jhipsterphotoApp.photo.opinions">Opinions</th>
+                    <th translate="myApp.photo.name">Name</th>
+	            <th translate="myApp.photo.type">Type</th>
+                    <th translate="myApp.photo.description">Description</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="photo in photos">
-                    <td><a ui-sref="photo.detail({id:photo.id})">{{photo.id}}</a></td>
+                    <td>{{photo.id}}</td>
                     <td>{{photo.name}}</td>
-                    <td>  <p ng-repeat="opinion in photo.opinions">{{opinion}}</p>
-
-                    </td>
+		    <td>{{photo.type}}</td>
+                    <td>{{photo.description}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="photo.detail({id:photo.id})"

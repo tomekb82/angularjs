@@ -4,9 +4,9 @@ angular.module('myApp')
     .controller('PhotoController', function ($scope, Photo) {
         $scope.photos = [];
         $scope.loadAll = function() {
-            /*Photo.query(function(result) {
+            Photo.query(function(result) {
                $scope.photos = result;
-            });*/
+            });
         };
         $scope.loadAll();
 
