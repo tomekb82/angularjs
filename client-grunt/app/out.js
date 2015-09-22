@@ -377,7 +377,7 @@ var photo_detail;
 })(photo_detail || (photo_detail = {}));
 var photo_dialog;
 (function (photo_dialog) {
-    photo_dialog.html = '<form name="editForm" role="form" novalidate ng-submit="save()">    <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"                ng-click="clear()">&times;</button>        <h4 class="modal-title" id="myPhotoLabel" translate="jhipsterphotoApp.photo.home.createOrEditLabel">Create or edit a Photo</h4>    </div>    <div class="modal-body">        <div class="form-group">            <label for="id" translate="global.field.id">ID</label>            <input type="text" class="form-control" id="id" name="id"                    ng-model="photo.id" readonly>        </div>        <div class="form-group">            <label translate="jhipsterphotoApp.photo.name" for="field_name">Name</label>            <input type="text" class="form-control" name="name" id="field_name"                    ng-model="photo.name"                    >        </div>        <div class="form-group">            <label translate="jhipsterphotoApp.photo.opinions" for="field_opinions">Opinions</label>            <input type="text" class="form-control" name="opinions" id="field_opinions"                    ng-model="photo.op1"                    >            <input type="text" class="form-control" name="opinions" id="field_opinions2"                   ng-model="photo.op2"                >        </div>    </div>    <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>        </button>        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>        </button>    </div></form>';
+    photo_dialog.html = '<form name="editForm" role="form" novalidate ng-submit="save()">    <div class="modal-header">        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"                ng-click="clear()">&times;</button>        <h4 class="modal-title" id="myPhotoLabel" translate="myApp.photo.home.createOrEditLabel">Create or edit a Photo</h4>    </div>    <div class="modal-body">        <div class="form-group">            <label for="id" translate="global.field.id">ID</label>            <input type="text" class="form-control" id="id" name="id"                    ng-model="photo.id" readonly>        </div>        <div class="form-group">            <label translate="myApp.photo.name" for="field_name">Name</label>            <input type="text" class="form-control" name="name" id="field_name"                    ng-model="photo.name">        </div>        <div class="form-group">            <label translate="myApp.photo.type" for="field_type">Type</label>            <input type="text" class="form-control" name="type" id="field_type"                    ng-model="photo.type">        </div>	<div class="form-group">            <label translate="myApp.photo.description" for="field_description">Description</label>            <input type="text" class="form-control" name="description" id="field_description"                    ng-model="photo.description">        </div>    </div>    <div class="modal-footer">        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>        </button>        <button type="submit" ng-disabled="editForm.$invalid || editForm.$submitted" class="btn btn-primary">            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>        </button>    </div></form>';
 })(photo_dialog || (photo_dialog = {}));
 var photos;
 (function (photos) {
@@ -592,13 +592,10 @@ angular.module('myApp').controller('PhotoDialogController', ['$scope', '$statePa
             });
         };
         var onSaveFinished = function (result) {
-            $scope.$emit('jhipsterphotoApp:photoUpdate', result);
+            $scope.$emit('myApp:photoUpdate', result);
             $modalInstance.close(result);
         };
         $scope.save = function () {
-            $scope.photo.opinions = [];
-            $scope.photo.opinions[0] = $scope.photo.op1;
-            $scope.photo.opinions[1] = $scope.photo.op2;
             console.log("==================  save()");
             if ($scope.photo.id != null) {
                 Photo.update($scope.photo, onSaveFinished);
