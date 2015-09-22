@@ -13,7 +13,7 @@ angular.module('myApp')
         $scope.delete = function (id) {
             Photo.get({id: id}, function(result) {
                 $scope.photo = result;
-                //$('#deletePhotoConfirmation').modal('show');
+                $('#deletePhotoConfirmation').modal('show');
             });
         };
 
@@ -21,7 +21,7 @@ angular.module('myApp')
             Photo.delete({id: id},
                 function () {
                     $scope.loadAll();
-                    //$('#deletePhotoConfirmation').modal('hide');
+                    $('#deletePhotoConfirmation').modal('hide');
                     $scope.clear();
                 });
         };
