@@ -1,42 +1,30 @@
 package tb.angularjs;
 
-import java.util.Arrays;
-import java.util.Properties;
-
-import org.hibernate.dialect.H2Dialect;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.rest.SpringBootRepositoryRestMvcConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
-import org.springframework.orm.hibernate3.HibernateTransactionManager;
-import tb.angularjs.orders.Item;
-import tb.angularjs.orders.Order;
 import tb.angularjs.photos.model.Photo;
 import tb.angularjs.photos.repository.PhotoRepository;
 
-import javax.sql.DataSource;
-
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
-//@EnableJpaRepositories
-//@Import(RepositoryRestMvcConfiguration.class)
-public class Application {//extends SpringBootRepositoryRestMvcConfiguration {
+@EnableJpaRepositories
+@Import(RepositoryRestMvcConfiguration.class)
+public class Application extends SpringBootRepositoryRestMvcConfiguration {
 
-    /*@Override
+    @Override
     protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.exposeIdsFor(Photo.class);
-    }*/
+    }
 
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
-/*
+
         //ConfigurableApplicationContext context = SpringApplication.run(Application.class);
         PhotoRepository repository = ctx.getBean(PhotoRepository.class);
 
@@ -56,7 +44,7 @@ public class Application {//extends SpringBootRepositoryRestMvcConfiguration {
         }
         System.out.println();
 
-*/
+
     }
 
 }
