@@ -40,11 +40,17 @@ public class PhotoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     //@Timed
     @Transactional(readOnly = true)
-    public List<PhotoDTO> getAllPhotos() {
+    public List<Photo> getAllPhotos() {
+        log.info("REST request to get all Photos");
+        return photoRepository.findAll();
+    }
+
+    /* DTO version */
+    public List<PhotoDTO> getAllPhotos2() {
         log.info("REST request to get all Photos");
         return photoRepository.findAll().stream()
-                .map(photo -> photoMapper.photoToPhotoDTO(photo))
-                .collect(Collectors.toCollection(LinkedList::new));
+            .map(photo -> photoMapper.photoToPhotoDTO(photo))
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
