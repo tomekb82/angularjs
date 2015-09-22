@@ -91,10 +91,11 @@ public class PhotoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     //@Timed
     public ResponseEntity<Photo> create(@RequestBody Photo photo) throws URISyntaxException {
-        log.debug("REST request to save Photo : {}", photo);
+        log.info("REST request to save Photo : {}", photo);
         if (photo.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new photo cannot already have an ID").body(null);
         }
+
         Photo result = photoRepository.save(photo);
         return ResponseEntity.created(new URI("/api/photos/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("photo", result.getId().toString()))
@@ -109,7 +110,7 @@ public class PhotoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     //@Timed
     public ResponseEntity<Photo> update(@RequestBody Photo photo) throws URISyntaxException {
-        log.debug("REST request to update Photo : {}", photo);
+        log.info("REST request to update Photo : {}", photo);
         if (photo.getId() == null) {
             return create(photo);
         }

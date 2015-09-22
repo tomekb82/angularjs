@@ -1,5 +1,7 @@
 package tb.angularjs.photos.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -21,7 +23,7 @@ public class Photo implements Serializable{
 
     @Id
     @Column(name = "id")
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")
