@@ -2,19 +2,19 @@
     "myApp": {
         "photo" : {
             "home": {
-                "title": "Photos",
-                "createLabel": "Create Photo",
-                "createOrEditLabel": "Create or edit Photo"
+                "title": "Zjęcia",
+                "createLabel": "Dodaj zdjęcie",
+                "createOrEditLabel": "Dodaj lub edytuj zdjęcie"
             },
             "delete": {
-                "question": "Do you want do delete Photo {{ id }} ?"
+                "question": "Czy chcesz usunąć zdjęcie {{ id }} ?"
             },
             "detail": {
-                "title": "Photo"
+                "title": "Zdjęcie"
             },
-            "name": "Name",
-	    "type": "Type",
-            "description": "Description"
+            "name": "Nazwa",
+	    "type": "Typ",
+            "description": "Opis"
         }
     }
 }
