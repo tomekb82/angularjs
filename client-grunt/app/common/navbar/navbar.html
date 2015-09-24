@@ -14,13 +14,13 @@
                 <li ui-sref-active="active">
                     <a ui-sref="home">
                         <span class="glyphicon glyphicon-home"></span>
-                        <span translate="global.menu.home">Home2</span>
+                        <span translate="global.menu.home">Home</span>
                     </a>
                 </li>
                 <li ui-sref-active="active">
                     <a ui-sref="photo">
                         <span class="glyphicon glyphicon-home"></span>
-                        <span translate="global.menu.photos">Photos2</span>
+                        <span translate="global.menu.photos">Photos</span>
                     </a>
                 </li>
                 <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
@@ -44,7 +44,7 @@
                                 <span>
                                     <span class="glyphicon glyphicon-user"></span>
                                     <span class="hidden-tablet" translate="global.menu.account.main">
-                                        Account2
+                                        Account
                                     </span>
                                     <b class="caret"></b>
                                 </span>
@@ -65,7 +65,8 @@
                             &#xA0;<span translate="global.menu.account.register">Register</span></a></li>
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">
+                <!--<li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">-->
+	        <li class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                                 <span>
                                     <span class="glyphicon glyphicon-tower"></span>
@@ -83,10 +84,10 @@
                         <li ui-sref-active="active"><a ui-sref="configuration"><span class="glyphicon glyphicon-list-alt"></span>
                             &#xA0;<span translate="global.menu.admin.configuration">Configuration</span></a></li>
                         <li ui-sref-active="active"><a ui-sref="audits"><span class="glyphicon glyphicon-bell"></span>
-                            &#xA0;<span translate="global.menu.admin.audits">Audits</span></a></li>
+                            &#xA0;<span translate="global.menu.admin.audits">Audits</span></a></li>-->
                         <li ui-sref-active="active"><a ui-sref="logs"><span class="glyphicon glyphicon-tasks"></span>
                             &#xA0;<span translate="global.menu.admin.logs">Logs</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>
+                       <!-- <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>
                             &#xA0;<span translate="global.menu.admin.apidocs">API</span></a></li>-->
                     </ul>
                 </li>

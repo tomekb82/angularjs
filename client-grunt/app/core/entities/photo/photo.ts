@@ -27,7 +27,7 @@ angular.module('myApp')
                 parent: 'entity',
                 url: '/photos',
                 data: {
-                    //roles: ['ROLE_USER'],
+                    roles: ['ROLE_USER'],
                     pageTitle: 'myApp.photo.home.title'
                 },
                 views: {
@@ -48,7 +48,7 @@ angular.module('myApp')
                 parent: 'entity',
                 url: '/photo/{id}',
                 data: {
-                    //roles: ['ROLE_USER'],
+                    roles: ['ROLE_USER'],
                     pageTitle: 'myApp.photo.detail.title'
                 },
                 views: {
