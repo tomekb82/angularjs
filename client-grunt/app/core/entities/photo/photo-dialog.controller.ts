@@ -12,14 +12,11 @@ angular.module('myApp').controller('PhotoDialogController',
         };
 
         var onSaveFinished = function (result) {
-            $scope.$emit('jhipsterphotoApp:photoUpdate', result);
+            $scope.$emit('myApp:photoUpdate', result);
             $modalInstance.close(result);
         };
 
         $scope.save = function () {
-            $scope.photo.opinions = [];
-            $scope.photo.opinions[0] = $scope.photo.op1;
-            $scope.photo.opinions[1] = $scope.photo.op2;
             console.log("==================  save()");
             if ($scope.photo.id != null) {
                 Photo.update($scope.photo, onSaveFinished);

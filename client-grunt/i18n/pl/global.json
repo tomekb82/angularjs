@@ -3,15 +3,15 @@
         "title": "myApp pl",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
-            "home": "Home3e",
-            "photos": "Photos",
+            "home": "Strona główna",
+            "photos": "Zdjęcia",
             "entities": {
                 "main": "Entities",
                 "photo": "Photo",
                 "additionalEntity": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
-                "main": "Account",
+                "main": "Konto",
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
@@ -30,7 +30,7 @@
                 "apidocs": "API",
                 "database": "Database"
             },
-            "language": "Language"
+            "language": "Język"
         },
         "form": {
             "username": "Login",
@@ -78,19 +78,19 @@
         "action": {
             "addblob": "Add blob",
             "addimage": "Add image",
-            "back": "Back",
-            "cancel": "Cancel",
-            "delete": "Delete",
-            "edit": "Edit",
-            "save": "Save",
-            "view": "View"
+            "back": "Cofnij",
+            "cancel": "Anuluj",
+            "delete": "Usuń",
+            "edit": "Edytuj",
+            "save": "Zapisz",
+            "view": "Pokaż"
         },
         "detail": {
             "field": "Field",
             "value": "Value"
         },
         "delete": {
-            "title": "Confirm delete operation"
+            "title": "Potwierdz operację usunięcia"
         },
         "validation": {
             "required": "This field is required.",
