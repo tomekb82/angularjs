@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
-import tb.angularjs.photos.model.Photo;
-import tb.angularjs.photos.repository.PhotoRepository;
+import tb.angularjs.model.Photo;
+import tb.angularjs.repository.PhotoRepository;
 
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 @EnableJpaRepositories
