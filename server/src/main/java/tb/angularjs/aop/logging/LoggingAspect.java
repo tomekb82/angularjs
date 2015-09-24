@@ -25,7 +25,7 @@ public class LoggingAspect {
     @Autowired//Inject
     private Environment env;
 
-    @Pointcut("within(tb.angularjs.repository..*) || within(tb.angularjs.service..*) || within(tb.angularjs.web.controller.Hello*)")
+    @Pointcut("within(tb.angularjs.repository..*) || within(tb.angularjs.service..*) || within(tb.angularjs.web.controller..**)")
     public void loggingPointcut() {}
 
     @AfterThrowing(pointcut = "loggingPointcut()", throwing = "e")
