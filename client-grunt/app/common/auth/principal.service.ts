@@ -1,4 +1,4 @@
-/// <reference path='../../reference.ts' />
+'use strict';
 
 angular.module('myApp')
     .factory('Principal', function Principal($q/*,Account, Tracker*/) {
@@ -13,32 +13,28 @@ angular.module('myApp')
                 return _authenticated;
             },
             isInRole: function (role) {
-	     // TODO: to change
+	           // TODO: to change
                // if (!_authenticated) {
                //    return false;
               // }
               console.log('Principal isInRole: true');
-		return true;
 
                return this.identity().then(function(_id) {
-                   return _id.roles && _id.roles.indexOf(role) !== -1;
+                   return true;//_id.roles && _id.roles.indexOf(role) !== -1;
                }, function(err){
                    return false;
                });
             },
             isInAnyRole: function (roles) {
-		// TODO: to change
-                //if (!_authenticated || !_identity || !_identity.roles) {
-                //    return false;
-                //}
-
+                if (!_authenticated || !_identity || !_identity.roles) {
+                    return false;
+                }
                 for (var i = 0; i < roles.length; i++) {
                     if (this.isInRole(roles[i])) {
                         return true;
                     }
                 }
-
-                return true; // TODO: to change it
+                return false; 
             },
             authenticate: function (identity) {
                 _identity = identity;
@@ -53,11 +49,12 @@ angular.module('myApp')
 
                 // check and see if we have retrieved the identity data from the server.
                 // if we have, reuse it by immediately resolving
-                if (angular.isDefined(_identity)) {
+                // TODO
+				//if (angular.isDefined(_identity)) {
                     deferred.resolve(_identity);
 
                     return deferred.promise;
-                }
+                //}
 
                 // retrieve the identity data from the server, update the identity object, and then resolve.
        /*         Account.get().$promise

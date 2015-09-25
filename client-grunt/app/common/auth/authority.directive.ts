@@ -1,6 +1,8 @@
 /// <reference path='../../reference.ts' />
 
-angular.module('myApp')
+
+	
+directives
     .directive('hasAnyRole', ['Principal', function (Principal){
         return {
             restrict: 'A',
@@ -40,19 +42,15 @@ angular.module('myApp')
             restrict: 'A',
             link: function (scope, element, attrs) {
                 var setVisible = function () {
-                        console.log('hasRole, setVisible');
                         element.removeClass('hidden');
                     },
                     setHidden = function () {
-                        console.log('hasRole, setHidden');
                         element.addClass('hidden');
                     },
                     defineVisibility = function (reset) {
-                        console.log('hasRole, defineVisibility');
                         if (reset) {
                             setVisible();
                         }
-
                         Principal.isInRole(role)
                             .then(function(result) {
 				console.log('Principal isInRole: result=' + result);
@@ -66,11 +64,10 @@ angular.module('myApp')
                     role = attrs.hasRole.replace(/\s+/g, '');
                     console.log('hasRole, defineVisibility, role=' + role);
 
-		// TODO: to change
-                //if (role.length > 0) {
+                if (role.length > 0) {
                 
                     defineVisibility(true);
-                //}
+                }
             }
         };
     }]);
