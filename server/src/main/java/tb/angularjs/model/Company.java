@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-public class Company extends User {
+public class Company extends UserJPA {
 
   // ==============
   // PRIVATE FIELDS

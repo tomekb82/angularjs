@@ -3,7 +3,7 @@ package tb.angularjs.model;
 import javax.persistence.Entity;
 
 @Entity
-public class Person extends User {
+public class Person extends UserJPA {
 
   // ==============
   // PRIVATE FIELDS

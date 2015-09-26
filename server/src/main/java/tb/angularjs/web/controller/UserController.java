@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tb.angularjs.model.Company;
 import tb.angularjs.model.Person;
-import tb.angularjs.model.User;
+import tb.angularjs.model.UserJPA;
 import tb.angularjs.repository.CompanyRepository;
 import tb.angularjs.repository.PersonRepository;
-import tb.angularjs.repository.UserRepository;
+import tb.angularjs.repository.UserJPARepository;
 
 @Controller
 public class UserController {
@@ -29,7 +29,7 @@ public class UserController {
     private PersonRepository personRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserJPARepository userRepository;
 
     // ==============
     // PUBLIC METHODS
@@ -129,7 +129,7 @@ public class UserController {
         String userId = "";
         String userType = "";
         try {
-            User user = userRepository.findByEmail(email);
+            UserJPA user = userRepository.findByEmail(email);
             userId = String.valueOf(user.getId());
 
             // get the user type
@@ -159,7 +159,7 @@ public class UserController {
     @ResponseBody
     public String update(Long id, String email, String name) {
         try {
-            User user = userRepository.findOne(id);
+            UserJPA user = userRepository.findOne(id);
             user.setEmail(email);
 
             // switch on the user type
