@@ -7,13 +7,14 @@ angular.module('myApp')
             template: '<div class="alerts" ng-cloak="">' +
 			                '<alert ng-cloak="" ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()"><pre>{{ alert.msg }}</pre></alert>' +
 			            '</div>',
-			controller: ['$scope', 
+			controller: ['$scope',
 	            function($scope) {
-				
+
 				var addErrorAlert = function (message, key, data) {
 						AlertService.error(key, data);
 				}
-				
+        /*
+        // test adding custom allert
 				var alertOptions= {
 					type: "info",
 					msg: "Witaj w mojej aplikacji...",
@@ -21,8 +22,7 @@ angular.module('myApp')
 					timeout: 0};
 					AlertService.add(alertOptions);
 					$scope.alerts = AlertService.get();
-			
-				
+			*/
 
 					var cleanHttpErrorListener = $rootScope.$on('myApp.httpError', function (event, httpResponse) {
 					    var i;
@@ -57,12 +57,12 @@ angular.module('myApp')
 					            }
 					    }
 					});
-					
+
 					$scope.$on('$destroy', function () {
 					    //cleanupCleanErrorsListener();
 					});
 
-					
+
 
 	            }
 	        ]

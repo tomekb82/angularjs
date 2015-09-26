@@ -324,13 +324,6 @@ angular.module('myApp')
                 var addErrorAlert = function (message, key, data) {
                     AlertService.error(key, data);
                 };
-                var alertOptions = {
-                    type: "info",
-                    msg: "Witaj w mojej aplikacji...",
-                    params: 2,
-                    timeout: 0 };
-                AlertService.add(alertOptions);
-                $scope.alerts = AlertService.get();
                 var cleanHttpErrorListener = $rootScope.$on('myApp.httpError', function (event, httpResponse) {
                     var i;
                     switch (httpResponse.status) {
@@ -639,9 +632,7 @@ angular.module('myApp')
             return _authenticated;
         },
         isInRole: function (role) {
-            console.log('Principal isInRole...');
             return this.identity().then(function (_id) {
-                console.log('Principal isInRole: identity');
                 return _id.roles && _id.roles.indexOf(role) !== -1;
             }, function (err) {
                 return false;
@@ -663,22 +654,17 @@ angular.module('myApp')
             _authenticated = identity !== null;
         },
         identity: function (force) {
-            console.log('Principal identity: 1.');
             var deferred = $q.defer();
             if (force === true) {
                 _identity = undefined;
             }
-            console.log('Principal identity: 2.');
             if (angular.isDefined(_identity)) {
                 deferred.resolve(_identity);
                 return deferred.promise;
             }
-            console.log('Principal identity: 3.');
             Account.get().$promise
                 .then(function (account) {
-                console.log('Account.get()');
                 _identity = account.data;
-                console.log(_identity);
                 _authenticated = true;
                 deferred.resolve(_identity);
             })
