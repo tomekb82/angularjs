@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp')
-    .factory('Principal', function Principal($q/*,Account, Tracker*/) {
+    .factory('Principal', function Principal($q, Account/*, Tracker*/) {
         var _identity,
             _authenticated = false;
 
@@ -13,14 +13,11 @@ angular.module('myApp')
                 return _authenticated;
             },
             isInRole: function (role) {
-	           // TODO: to change
-               // if (!_authenticated) {
-               //    return false;
-              // }
-              console.log('Principal isInRole: true');
-
-               return this.identity().then(function(_id) {
-                   return true;//_id.roles && _id.roles.indexOf(role) !== -1;
+              //if (!_authenticated) {
+              //     return false;
+              //}
+              return this.identity().then(function(_id) {
+                   return _id.roles && _id.roles.indexOf(role) !== -1;
                }, function(err){
                    return false;
                });
@@ -34,41 +31,38 @@ angular.module('myApp')
                         return true;
                     }
                 }
-                return false; 
+                return false;
             },
             authenticate: function (identity) {
                 _identity = identity;
                 _authenticated = identity !== null;
             },
             identity: function (force) {
+
                 var deferred = $q.defer();
 
                 if (force === true) {
                     _identity = undefined;
                 }
-
                 // check and see if we have retrieved the identity data from the server.
                 // if we have, reuse it by immediately resolving
-                // TODO
-				//if (angular.isDefined(_identity)) {
+				        if (angular.isDefined(_identity)) {
                     deferred.resolve(_identity);
-
                     return deferred.promise;
-                //}
-
+                }
                 // retrieve the identity data from the server, update the identity object, and then resolve.
-       /*         Account.get().$promise
+                Account.get().$promise
                     .then(function (account) {
                         _identity = account.data;
                         _authenticated = true;
                         deferred.resolve(_identity);
-                        Tracker.connect();
+                        //Tracker.connect();
                     })
                     .catch(function() {
                         _identity = null;
                         _authenticated = false;
                         deferred.resolve(_identity);
-                    });*/
+                    });
                 return deferred.promise;
             }
         };

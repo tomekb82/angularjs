@@ -1,22 +1,17 @@
 /// <reference path='../../reference.ts' />
 
-
-	
 directives
     .directive('hasAnyRole', ['Principal', function (Principal){
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
                 var setVisible = function () {
-                        console.log('hasAnyRole, setVisible');
                         element.removeClass('hidden');
                     },
                     setHidden = function () {
-			console.log('hasAnyRole, setHidden');
                         element.addClass('hidden');
                     },
                     defineVisibility = function (reset) {
-			console.log('hasAnyRole, defineVisibility');
                         var result;
                         if (reset) {
                             setVisible();
@@ -53,7 +48,6 @@ directives
                         }
                         Principal.isInRole(role)
                             .then(function(result) {
-				console.log('Principal isInRole: result=' + result);
                                 if (result) {
                                     setVisible();
                                 } else {
@@ -62,10 +56,8 @@ directives
                             });
                     },
                     role = attrs.hasRole.replace(/\s+/g, '');
-                    console.log('hasRole, defineVisibility, role=' + role);
 
                 if (role.length > 0) {
-                
                     defineVisibility(true);
                 }
             }

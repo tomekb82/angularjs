@@ -31,6 +31,7 @@
 /// <reference path="common/auth/authority.directive.ts" />
 /// <reference path="common/auth/principal.service.ts" />
 /// <reference path="common/auth/provider/auth.session.service.ts" />
+/// <reference path="common/auth/services/account.service.ts" />
 /// <reference path="common/entities/photo/photo.service.ts" />
 /// <reference path="common/interceptor/errorhandler.interceptor.ts" />
 /// <reference path="common/interceptor/notification.interceptor.ts" />
