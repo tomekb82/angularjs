@@ -1,22 +1,24 @@
 'use strict';
 
 angular.module('myApp')
-    .factory('AuthServerProvider', function loginService($http, localStorageService, $window, Tracker) {
+    .factory('AuthServerProvider', function loginService($http, localStorageService, $window/*, Tracker*/) {
         return {
             login: function(credentials) {
                 var data = 'j_username=' + encodeURIComponent(credentials.username) +
                     '&j_password=' + encodeURIComponent(credentials.password) +
                     '&remember-me=' + credentials.rememberMe + '&submit=Login';
+                      console.log('AuthServerProvider: login() success');
                 return $http.post('api/authentication', data, {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).success(function (response) {
+                  console.log('AuthServerProvider: login() success');
                     return response;
                 });
             },
             logout: function() {
-                Tracker.disconnect();
+                //Tracker.disconnect();
                 // logout from the server
                 $http.post('api/logout').success(function (response) {
                     localStorageService.clearAll();

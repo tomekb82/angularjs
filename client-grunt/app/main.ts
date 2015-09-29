@@ -9,7 +9,7 @@ angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
 
-	$rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+	      $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 
@@ -17,7 +17,7 @@ angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.
             Language.getCurrent().then(function (language) {
                 $translate.use(language);
             });
-            
+
         });
 
         $rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -30,12 +30,12 @@ angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.
             if (toState.data.pageTitle) {
                 titleKey = toState.data.pageTitle;
             }
-            
+
             $translate(titleKey).then(function (title) {
                 // Change window title with translated one
                 $window.document.title = title;
             });
-            
+
         });
 
         $rootScope.back = function() {
@@ -46,14 +46,14 @@ angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.
                 $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
             }
         };
-  
+
   })
  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider,$translateProvider, tmhDynamicLocaleProvider,httpRequestInterceptorCacheBusterProvider) {
 
         //enable CSRF
         $httpProvider.defaults.xsrfCookieName = 'CSRF-TOKEN';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
-		
+
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
@@ -77,7 +77,7 @@ angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.
 		$httpProvider.interceptors.push('errorHandlerInterceptor');
         //$httpProvider.interceptors.push('authExpiredInterceptor');
         $httpProvider.interceptors.push('notificationInterceptor');
-		
+
 	    // Initialize angular-translate
         $translateProvider.useLoader('$translatePartialLoader', {
             urlTemplate: 'i18n/{lang}/{part}.json'
@@ -94,6 +94,3 @@ angular.module('myApp',['LocalStorageModule','tmh.dynamicLocale', 'pascalprecht.
 
 
   })
-
-
-

@@ -1,10 +1,8 @@
 'use strict';
 
-angular.module('jhipsterphotoApp')
+angular.module('myApp')
     .factory('Activate', function ($resource) {
         return $resource('api/activate', {}, {
             'get': { method: 'GET', params: {}, isArray: false}
         });
     });
-
-

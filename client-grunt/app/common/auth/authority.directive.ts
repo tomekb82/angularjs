@@ -46,6 +46,7 @@ directives
                         if (reset) {
                             setVisible();
                         }
+                        console.log('hasRole');
                         Principal.isInRole(role)
                             .then(function(result) {
                                 if (result) {

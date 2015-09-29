@@ -362,8 +362,16 @@ angular.module('myApp')
 });
 var navbar;
 (function (navbar) {
-    navbar.html = '<nav class="navbar navbar-default" role="navigation">    <div class="container">        <div class="navbar-header">            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">                <span class="sr-only">Toggle navigation</span>                <span class="icon-bar"></span>                <span class="icon-bar"></span>                <span class="icon-bar"></span>            </button>            <a class="navbar-brand" href="#/"><span translate="global.title">MyApp</span> <span class="navbar-version">v{{VERSION}}</span></a>        </div>        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">            <ul class="nav navbar-nav nav-pills navbar-right">                <li ui-sref-active="active">                    <a ui-sref="home">                        <span class="glyphicon glyphicon-home"></span>                        <span translate="global.menu.home">Home</span>                    </a>                </li>                <li ui-sref-active="active">                    <a ui-sref="photo">                        <span class="glyphicon glyphicon-home"></span>                        <span translate="global.menu.photos">Photos</span>                    </a>                </li>                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-th-list"></span>                                    <span class="hidden-tablet" translate="global.menu.entities.main">                                        Entities                                    </span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li ui-sref-active="active" ><a ui-sref="photo"><span class="glyphicon glyphicon-asterisk"></span>                        &#xA0;<span translate="global.menu.entities.photo">photo</span></a></li>                        <!-- JHipster will add entities to the menu here -->                    </ul>                </li>                <li ng-class="{active: $state.includes(\'account\')}" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-user"></span>                                    <span class="hidden-tablet" translate="global.menu.account.main">                                        Account                                    </span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings"><span class="glyphicon glyphicon-wrench"></span>                            &#xA0;<span translate="global.menu.account.settings">Settings</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password"><span class="glyphicon glyphicon-lock"></span>                            &#xA0;<span translate="global.menu.account.password">Password</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions"><span class="glyphicon glyphicon-cloud"></span>                            &#xA0;<span translate="global.menu.account.sessions">Sessions</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>                            &#xA0;<span translate="global.menu.account.logout">Log out</span></a></li>                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>                            &#xA0;<span translate="global.menu.account.login">Authenticate</span></a></li>                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span class="glyphicon glyphicon-plus-sign"></span>                            &#xA0;<span translate="global.menu.account.register">Register</span></a></li>                    </ul>                </li>                <!--<li ng-class="{active: $state.includes(\'admin\')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">-->	        <li has-role="ROLE_ADMIN" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-tower"></span>                                    <span class="hidden-tablet" translate="global.menu.admin.main">Administration</span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                       <!-- <li ui-sref-active="active"><a ui-sref="tracker"><span class="glyphicon glyphicon-eye-open"></span>                                &nbsp;<span translate="global.menu.admin.tracker">User tracker</span></a></li>-->                        <li ui-sref-active="active"><a ui-sref="metrics"><span class="glyphicon glyphicon-dashboard"></span>                            &#xA0;<span translate="global.menu.admin.metrics">Metrics</span></a></li>                        <li ui-sref-active="active"><a ui-sref="health"><span class="glyphicon glyphicon-heart"></span>                            &#xA0;<span translate="global.menu.admin.health">Health</span></a></li>                       <!-- <li ui-sref-active="active"><a ui-sref="configuration"><span class="glyphicon glyphicon-list-alt"></span>                            &#xA0;<span translate="global.menu.admin.configuration">Configuration</span></a></li>-->                        <li ui-sref-active="active"><a ui-sref="audits"><span class="glyphicon glyphicon-bell"></span>                            &#xA0;<span translate="global.menu.admin.audits">Audits</span></a></li>                        <li ui-sref-active="active"><a ui-sref="logs"><span class="glyphicon glyphicon-tasks"></span>                            &#xA0;<span translate="global.menu.admin.logs">Logs</span></a></li>                       <!-- <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>                            &#xA0;<span translate="global.menu.admin.apidocs">API</span></a></li>-->                    </ul>                </li>                <li ui-sref-active="active" class="dropdown pointer" ng-controller="LanguageController">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-flag"></span>                                    <span class="hidden-tablet" translate="global.menu.language">Language2</span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li active-menu="{{language}}" ng-repeat="language in languages">                            <a href="" ng-click="changeLanguage(language)">{{language | findLanguageFromKey}}</a>                        </li>                    </ul>                </li>            </ul>        </div>    </div></nav>';
+    navbar.html = '<nav class="navbar navbar-default" role="navigation">    <div class="container">        <div class="navbar-header">            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">                <span class="sr-only">Toggle navigation</span>                <span class="icon-bar"></span>                <span class="icon-bar"></span>                <span class="icon-bar"></span>            </button>            <a class="navbar-brand" href="#/"><span translate="global.title">MyApp</span> <span class="navbar-version">v{{VERSION}}</span></a>        </div>        <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">            <ul class="nav navbar-nav nav-pills navbar-right">                <li ui-sref-active="active">                    <a ui-sref="home">                        <span class="glyphicon glyphicon-home"></span>                        <span translate="global.menu.home">Home</span>                    </a>                </li>                <li ui-sref-active="active">                    <a ui-sref="photo">                        <span class="glyphicon glyphicon-home"></span>                        <span translate="global.menu.photos">Photos</span>                    </a>                </li>                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-th-list"></span>                                    <span class="hidden-tablet" translate="global.menu.entities.main">                                        Entities                                    </span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li ui-sref-active="active" ><a ui-sref="photo"><span class="glyphicon glyphicon-asterisk"></span>                        &#xA0;<span translate="global.menu.entities.photo">photo</span></a></li>                        <!-- JHipster will add entities to the menu here -->                    </ul>                </li>                <li ng-class="{active: $state.includes(\'account\')}" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-user"></span>                                    <span class="hidden-tablet" translate="global.menu.account.main">                                        Account                                    </span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings"><span class="glyphicon glyphicon-wrench"></span>                            &#xA0;<span translate="global.menu.account.settings">Settings</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password"><span class="glyphicon glyphicon-lock"></span>                            &#xA0;<span translate="global.menu.account.password">Password</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions"><span class="glyphicon glyphicon-cloud"></span>                            &#xA0;<span translate="global.menu.account.sessions">Sessions</span></a></li>                        <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span>                            &#xA0;<span translate="global.menu.account.logout">Log out</span></a></li>                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span>                            &#xA0;<span translate="global.menu.account.login">Authenticate</span></a></li>                        <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register"><span class="glyphicon glyphicon-plus-sign"></span>                            &#xA0;<span translate="global.menu.account.register">Register</span></a></li>                    </ul>                </li>                <li ng-class="{active: $state.includes(\'admin\')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-tower"></span>                                    <span class="hidden-tablet" translate="global.menu.admin.main">Administration</span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                       <!-- <li ui-sref-active="active"><a ui-sref="tracker"><span class="glyphicon glyphicon-eye-open"></span>                                &nbsp;<span translate="global.menu.admin.tracker">User tracker</span></a></li>-->                        <li ui-sref-active="active"><a ui-sref="metrics"><span class="glyphicon glyphicon-dashboard"></span>                            &#xA0;<span translate="global.menu.admin.metrics">Metrics</span></a></li>                        <li ui-sref-active="active"><a ui-sref="health"><span class="glyphicon glyphicon-heart"></span>                            &#xA0;<span translate="global.menu.admin.health">Health</span></a></li>                       <!-- <li ui-sref-active="active"><a ui-sref="configuration"><span class="glyphicon glyphicon-list-alt"></span>                            &#xA0;<span translate="global.menu.admin.configuration">Configuration</span></a></li>-->                        <li ui-sref-active="active"><a ui-sref="audits"><span class="glyphicon glyphicon-bell"></span>                            &#xA0;<span translate="global.menu.admin.audits">Audits</span></a></li>                        <li ui-sref-active="active"><a ui-sref="logs"><span class="glyphicon glyphicon-tasks"></span>                            &#xA0;<span translate="global.menu.admin.logs">Logs</span></a></li>                       <!-- <li ui-sref-active="active"><a ui-sref="docs"><span class="glyphicon glyphicon-book"></span>                            &#xA0;<span translate="global.menu.admin.apidocs">API</span></a></li>-->                    </ul>                </li>                <li ui-sref-active="active" class="dropdown pointer" ng-controller="LanguageController">                    <a class="dropdown-toggle" data-toggle="dropdown" href="">                                <span>                                    <span class="glyphicon glyphicon-flag"></span>                                    <span class="hidden-tablet" translate="global.menu.language">Language2</span>                                    <b class="caret"></b>                                </span>                    </a>                    <ul class="dropdown-menu">                        <li active-menu="{{language}}" ng-repeat="language in languages">                            <a href="" ng-click="changeLanguage(language)">{{language | findLanguageFromKey}}</a>                        </li>                    </ul>                </li>            </ul>        </div>    </div></nav>';
 })(navbar || (navbar = {}));
+var login;
+(function (login) {
+    login.html = '<div>    <div class="row">        <div class="col-md-4 col-md-offset-4">            <h1 translate="login.title">Authentication</h1>            <div class="alert alert-danger" ng-show="authenticationError" translate="login.messages.error.authentication">                <strong>Authentication failed!</strong> Please check your credentials and try again.            </div>            <form class="form" role="form" ng-submit="login($event)">                <div class="form-group">                    <label for="username" translate="global.form.username">Login</label>                    <input type="text" class="form-control" id="username" placeholder="{{\'global.form.username.placeholder\' | translate}}" ng-model="username">                </div>                <div class="form-group">                    <label for="password" translate="login.form.password">Password</label>                    <input type="password" class="form-control" id="password" placeholder="{{\'login.form.password.placeholder\' | translate}}"                           ng-model="password">                </div>                <div class="form-group">                    <label for="rememberMe">                        <input type="checkbox" id="rememberMe" ng-model="rememberMe" checked>                        <span translate="login.form.rememberme">Automatic Login</span>                    </label>                </div>                <button type="submit" class="btn btn-primary" translate="login.form.button">Authenticate</button>            </form>            <p></p>            <div class="alert alert-warning">                <a href="#/reset/request" translate="login.password.forgot">Did you forget your password?</a>            </div>            <div class="alert alert-warning" translate="global.messages.info.register">                You don\'t have an account yet? <a href="#/register">Register a new account</a>            </div>        </div>    </div></div>';
+})(login || (login = {}));
+var register;
+(function (register) {
+    register.html = '<div>    <div class="row">        <div class="col-md-8 col-md-offset-2">            <h1 translate="register.title">Registration</h1>            <div class="alert alert-success" ng-show="success" translate="register.messages.success">                <strong>Registration saved!</strong> Please check your email for confirmation.            </div>            <div class="alert alert-danger" ng-show="error" translate="register.messages.error.fail">                <strong>Registration failed!</strong> Please try again later.            </div>            <div class="alert alert-danger" ng-show="errorUserExists" translate="register.messages.error.userexists">                <strong>Login name already registered!</strong> Please choose another one.            </div>            <div class="alert alert-danger" ng-show="errorEmailExists" translate="register.messages.error.emailexists">                <strong>E-mail is already in use!</strong> Please choose another one.            </div>            <div class="alert alert-danger" ng-show="doNotMatch" translate="global.messages.error.dontmatch">                The password and its confirmation do not match!            </div>            <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>                <div class="form-group">                    <label for="login" translate="global.form.username">Login</label>                    <input type="text" class="form-control" id="login" name="login" placeholder="{{\'global.form.username.placeholder\' | translate}}"                           ng-model="registerAccount.login" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[a-z0-9]*$/" required>                    <div ng-show="form.login.$dirty && form.login.$invalid">                        <p class="help-block"                               ng-show="form.login.$error.required" translate="register.messages.validate.login.required">                            Your login is required.                        </p>                        <p class="help-block"                               ng-show="form.login.$error.minlength" translate="register.messages.validate.login.minlength">                            Your login is required to be at least 1 character.                        </p>                        <p class="help-block"                               ng-show="form.login.$error.maxlength" translate="register.messages.validate.login.maxlength">                            Your login cannot be longer than 50 characters.                        </p>                        <p class="help-block"                               ng-show="form.login.$error.pattern" translate="register.messages.validate.login.pattern">                            Your login can only contain lower-case letters and digits.                    </p>                    </div>                </div>                <div class="form-group">                    <label for="email" translate="global.form.email">E-mail</label>                    <input type="email" class="form-control" id="email" name="email" placeholder="{{\'global.form.email.placeholder\' | translate}}"                           ng-model="registerAccount.email" ng-minlength=5 ng-maxlength=100 required>                    <div ng-show="form.email.$dirty && form.email.$invalid">                        <p class="help-block"                               ng-show="form.email.$error.required" translate="global.messages.validate.email.required">                            Your e-mail is required.                        </p>                        <p class="help-block"                               ng-show="form.email.$error.email" translate="global.messages.validate.email.invalid">                            Your e-mail is invalid.                        </p>                        <p class="help-block"                               ng-show="form.email.$error.minlength" translate="global.messages.validate.email.minlength">                            Your e-mail is required to be at least 5 characters.                        </p>                        <p class="help-block"                               ng-show="form.email.$error.maxlength" translate="global.messages.validate.email.maxlength">                            Your e-mail cannot be longer than 100 characters.                        </p>                    </div>                </div>                <div class="form-group">                    <label for="password" translate="global.form.newpassword">New password</label>                    <input type="password" class="form-control" id="password" name="password" placeholder="{{\'global.form.newpassword.placeholder\' | translate}}"                           ng-model="registerAccount.password" ng-minlength=5 ng-maxlength=50 required>                    <div ng-show="form.password.$dirty && form.password.$invalid">                        <p class="help-block"                               ng-show="form.password.$error.required" translate="global.messages.validate.newpassword.required">                            Your password is required.                        </p>                        <p class="help-block"                               ng-show="form.password.$error.minlength" translate="global.messages.validate.newpassword.minlength">                            Your password is required to be at least 5 characters.                        </p>                        <p class="help-block"                               ng-show="form.password.$error.maxlength" translate="global.messages.validate.newpassword.maxlength">                            Your password cannot be longer than 50 characters.                        </p>                    </div>                    <password-strength-bar password-to-check="registerAccount.password"></password-strength-bar>                </div>                <div class="form-group">                    <label for="confirmPassword" translate="global.form.confirmpassword">New password confirmation</label>                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="{{\'global.form.confirmpassword.placeholder\' | translate}}"                           ng-model="confirmPassword" ng-minlength=5 ng-maxlength=50 required>                    <div ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">                        <p class="help-block"                               ng-show="form.confirmPassword.$error.required" translate="global.messages.validate.confirmpassword.required">                            Your confirmation password is required.                        </p>                        <p class="help-block"                               ng-show="form.confirmPassword.$error.minlength" translate="global.messages.validate.confirmpassword.minlength">                            Your confirmation password is required to be at least 5 characters.                        </p>                        <p class="help-block"                               ng-show="form.confirmPassword.$error.maxlength" translate="global.messages.validate.confirmpassword.maxlength">                            Your confirmation password cannot be longer than 50 characters.                        </p>                    </div>                </div>                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" translate="register.form.button">Register</button>            </form>            <p></p>            <div class="alert alert-warning" translate="global.messages.info.authenticated">                If you want to <a href="#/login">authenticate</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").            </div>        </div>    </div></div>';
+})(register || (register = {}));
 var audits;
 (function (audits) {
     audits.html = '<div>    <h2 translate="audits.title">Audits</h2>    <div class="row">        <div class="col-md-5">            <h4 translate="audits.filter.title">Filter by date</h4>            <p class="input-group">                <span class="input-group-addon" translate="audits.filter.from">from</span>                <input type="date" class="input-sm form-control" name="start" ng-model="fromDate" ng-change="onChangeDate()" required/>                <span class="input-group-addon" translate="audits.filter.to">to</span>                <input type="date" class="input-sm form-control" name="end" ng-model="toDate" ng-change="onChangeDate()" required/>            </p>        </div>    </div>    <table class="table table-condensed table-striped table-bordered table-responsive">        <thead>        <tr>            <th ng-click="predicate = \'timestamp\'; reverse=!reverse"><span translate="audits.table.header.date">Date</span></th>            <th ng-click="predicate = \'principal\'; reverse=!reverse"><span translate="audits.table.header.principal">User</span></th>            <th ng-click="predicate = \'type\'; reverse=!reverse"><span translate="audits.table.header.status">State</span></th>            <th ng-click="predicate = \'data.message\'; reverse=!reverse"><span translate="audits.table.header.data">Extra data</span></th>        </tr>        </thead>        <tr ng-repeat="audit in audits | filter:filter | orderBy:predicate:reverse" ng-hide="audit.filtered">            <td><span>{{audit.timestamp| date:\'medium\'}}</span></td>            <td><small>{{audit.principal}}</small></td>            <td>{{audit.type}}</td>            <td>                <span ng-show="audit.data.message">{{audit.data.message}}</span>                <span ng-show="audit.data.remoteAddress"><span translate="audits.table.data.remoteAddress">Remote Address</span> {{audit.data.remoteAddress}}</span>            </td>        </tr>    </table></div>';
@@ -472,7 +480,7 @@ angular.module('myApp')
 });
 /// <reference path='../../reference.ts' />
 angular.module('myApp')
-    .factory('Auth', function Auth($rootScope, $state, $q, $translate, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish, Tracker) {
+    .factory('Auth', function Auth($rootScope, $state, $q, $translate, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
     return {
         login: function (credentials, callback) {
             var cb = callback || angular.noop;
@@ -481,7 +489,6 @@ angular.module('myApp')
                 Principal.identity(true).then(function (account) {
                     $translate.use(account.langKey);
                     $translate.refresh();
-                    Tracker.sendActivity();
                     deferred.resolve(data);
                 });
                 return cb();
@@ -604,6 +611,7 @@ directives
                     if (reset) {
                         setVisible();
                     }
+                    console.log('hasRole');
                     Principal.isInRole(role)
                         .then(function (result) {
                         if (result) {
@@ -679,22 +687,23 @@ angular.module('myApp')
 });
 'use strict';
 angular.module('myApp')
-    .factory('AuthServerProvider', function loginService($http, localStorageService, $window, Tracker) {
+    .factory('AuthServerProvider', function loginService($http, localStorageService, $window) {
     return {
         login: function (credentials) {
             var data = 'j_username=' + encodeURIComponent(credentials.username) +
                 '&j_password=' + encodeURIComponent(credentials.password) +
                 '&remember-me=' + credentials.rememberMe + '&submit=Login';
+            console.log('AuthServerProvider: login() success');
             return $http.post('api/authentication', data, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).success(function (response) {
+                console.log('AuthServerProvider: login() success');
                 return response;
             });
         },
         logout: function () {
-            Tracker.disconnect();
             $http.post('api/logout').success(function (response) {
                 localStorageService.clearAll();
                 $http.get('api/account');
@@ -723,6 +732,31 @@ angular.module('myApp')
             }
         }
     });
+});
+'use strict';
+angular.module('myApp')
+    .factory('Activate', function ($resource) {
+    return $resource('api/activate', {}, {
+        'get': { method: 'GET', params: {}, isArray: false }
+    });
+});
+'use strict';
+angular.module('myApp')
+    .factory('Password', function ($resource) {
+    return $resource('api/account/change_password', {}, {});
+});
+angular.module('myApp')
+    .factory('PasswordResetInit', function ($resource) {
+    return $resource('api/account/reset_password/init', {}, {});
+});
+angular.module('myApp')
+    .factory('PasswordResetFinish', function ($resource) {
+    return $resource('api/account/reset_password/finish', {}, {});
+});
+'use strict';
+angular.module('myApp')
+    .factory('Register', function ($resource) {
+    return $resource('api/register', {}, {});
 });
 'use strict';
 angular.module('myApp')
@@ -781,7 +815,13 @@ angular.module('myApp')
 });
 'use strict';
 angular.module('myApp')
-    .controller('NavbarController', function ($scope) {
+    .controller('NavbarController', function ($scope, $location, $state, Auth, Principal) {
+    $scope.isAuthenticated = Principal.isAuthenticated;
+    $scope.$state = $state;
+    $scope.logout = function () {
+        Auth.logout();
+        $state.go('home');
+    };
 });
 'use strict';
 angular.module('myApp')
@@ -940,6 +980,150 @@ app.factory('someService', function ($timeout, $q) {
             return deferred.promise;
         }
     };
+});
+'use strict';
+angular.module('myApp')
+    .config(function ($stateProvider) {
+    $stateProvider
+        .state('account', {
+        abstract: true,
+        parent: 'site'
+    });
+});
+'use strict';
+angular.module('myApp')
+    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
+    $scope.user = {};
+    $scope.errors = {};
+    $scope.rememberMe = true;
+    $timeout(function () { angular.element('[ng-model="username"]').focus(); });
+    $scope.login = function (event) {
+        event.preventDefault();
+        Auth.login({
+            username: $scope.username,
+            password: $scope.password,
+            rememberMe: $scope.rememberMe
+        }).then(function () {
+            $scope.authenticationError = false;
+            if ($rootScope.previousStateName === 'register') {
+                $state.go('home');
+            }
+            else {
+                $rootScope.back();
+            }
+        }).catch(function () {
+            $scope.authenticationError = true;
+        });
+    };
+});
+'use strict';
+angular.module('myApp')
+    .config(function ($stateProvider) {
+    $stateProvider
+        .state('login', {
+        parent: 'account',
+        url: '/login',
+        data: {
+            roles: [],
+            pageTitle: 'login.title'
+        },
+        views: {
+            'content@': {
+                templateUrl: 'app/core/account/login/login.html',
+                controller: 'LoginController'
+            }
+        },
+        resolve: {
+            translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('login');
+                    return $translate.refresh();
+                }]
+        }
+    });
+});
+'use strict';
+angular.module('myApp')
+    .controller('LogoutController', function (Auth) {
+    Auth.logout();
+});
+'use strict';
+angular.module('myApp')
+    .config(function ($stateProvider) {
+    $stateProvider
+        .state('logout', {
+        parent: 'account',
+        url: '/logout',
+        data: {
+            roles: []
+        },
+        views: {
+            'content@': {
+                templateUrl: 'app/core/main/main.html',
+                controller: 'LogoutController'
+            }
+        }
+    });
+});
+'use strict';
+angular.module('myApp')
+    .controller('RegisterController', function ($scope, $translate, $timeout, Auth) {
+    $scope.success = null;
+    $scope.error = null;
+    $scope.doNotMatch = null;
+    $scope.errorUserExists = null;
+    $scope.registerAccount = {};
+    $timeout(function () { angular.element('[ng-model="registerAccount.login"]').focus(); });
+    $scope.register = function () {
+        if ($scope.registerAccount.password !== $scope.confirmPassword) {
+            $scope.doNotMatch = 'ERROR';
+        }
+        else {
+            $scope.registerAccount.langKey = $translate.use();
+            $scope.doNotMatch = null;
+            $scope.error = null;
+            $scope.errorUserExists = null;
+            $scope.errorEmailExists = null;
+            Auth.createAccount($scope.registerAccount).then(function () {
+                $scope.success = 'OK';
+            }).catch(function (response) {
+                $scope.success = null;
+                if (response.status === 400 && response.data === 'login already in use') {
+                    $scope.errorUserExists = 'ERROR';
+                }
+                else if (response.status === 400 && response.data === 'e-mail address already in use') {
+                    $scope.errorEmailExists = 'ERROR';
+                }
+                else {
+                    $scope.error = 'ERROR';
+                }
+            });
+        }
+    };
+});
+'use strict';
+angular.module('myApp')
+    .config(function ($stateProvider) {
+    $stateProvider
+        .state('register', {
+        parent: 'account',
+        url: '/register',
+        data: {
+            roles: [],
+            pageTitle: 'register.title'
+        },
+        views: {
+            'content@': {
+                templateUrl: 'app/core/account/register/register.html',
+                controller: 'RegisterController'
+            }
+        },
+        resolve: {
+            translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('register');
+                    return $translate.refresh();
+                }]
+        }
+    });
 });
 'use strict';
 angular.module('myApp')
@@ -1612,6 +1796,8 @@ services.service('logService', LogService);
 /// <reference path="common/alert/alert.service.ts" />
 /// <reference path="common/alert/alert.directive.ts" />
 /// <reference path="common/navbar/navbar.html.ts" />
+/// <reference path="core/account/login/login.html.ts" />
+/// <reference path="core/account/register/register.html.ts" />
 /// <reference path="core/admin/audits/audits.html.ts" />
 /// <reference path="core/admin/health/health.html.ts" />
 /// <reference path="core/admin/health/health.modal.html.ts" />
@@ -1632,6 +1818,9 @@ services.service('logService', LogService);
 /// <reference path="common/auth/principal.service.ts" />
 /// <reference path="common/auth/provider/auth.session.service.ts" />
 /// <reference path="common/auth/services/account.service.ts" />
+/// <reference path="common/auth/services/activate.service.ts" />
+/// <reference path="common/auth/services/password.service.ts" />
+/// <reference path="common/auth/services/register.service.ts" />
 /// <reference path="common/entities/photo/photo.service.ts" />
 /// <reference path="common/interceptor/errorhandler.interceptor.ts" />
 /// <reference path="common/interceptor/notification.interceptor.ts" />
@@ -1642,6 +1831,13 @@ services.service('logService', LogService);
 /// <reference path="controllers/TestController.ts" />
 /// <reference path="controllers/annotations/AnnotationController.ts" />
 /// <reference path="controllers/app.ts" />
+/// <reference path="core/account/account.ts" />
+/// <reference path="core/account/login/login.controller.ts" />
+/// <reference path="core/account/login/login.ts" />
+/// <reference path="core/account/logout/logout.controller.ts" />
+/// <reference path="core/account/logout/logout.ts" />
+/// <reference path="core/account/register/register.controller.ts" />
+/// <reference path="core/account/register/register.ts" />
 /// <reference path="core/admin/admin.ts" />
 /// <reference path="core/admin/audits/audits.controller.ts" />
 /// <reference path="core/admin/audits/audits.ts" />
