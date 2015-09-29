@@ -106,7 +106,7 @@ public class AccountController {
     //@Timed
     public ResponseEntity<UserDTO> getAccount() {
 
-        return new ResponseEntity<>(
+     /*   return new ResponseEntity<>(
                 new UserDTO(
                         "login",
                         null,
@@ -115,9 +115,9 @@ public class AccountController {
                         "jan.kowalski@poczta.fm",
                         "en",
                         new ArrayList<>(Arrays.asList("ROLE_ADMIN"))),
-                HttpStatus.OK);
-/*
-        return Optional.ofNullable(userService.getUserWithAuthorities())
+                HttpStatus.OK);*/
+
+       return Optional.ofNullable(userService.getUserWithAuthorities())
             .map(user -> {
                 return new ResponseEntity<>(
                     new UserDTO(
@@ -131,7 +131,7 @@ public class AccountController {
                             .collect(Collectors.toList())),
                 HttpStatus.OK);
             })
-            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));*/
+            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     /**

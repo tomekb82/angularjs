@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.Type;
 
 /**
  * Base abstract class for entities which will hold definitions for created, last modified by and created,
@@ -32,7 +33,7 @@ public abstract class AbstractAuditingEntity {
 
     @CreatedDate
     @NotNull
-    //@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @Column(name = "created_date", nullable = false)
     @JsonIgnore
     private DateTime createdDate = DateTime.now();
@@ -43,7 +44,7 @@ public abstract class AbstractAuditingEntity {
     private String lastModifiedBy;
 
     @LastModifiedDate
-    //@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     @Column(name = "last_modified_date")
     @JsonIgnore
     private DateTime lastModifiedDate = DateTime.now();

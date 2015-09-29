@@ -1,45 +1,45 @@
 package tb.angularjs.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import tb.angularjs.security.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.RememberMeServices;
-import tb.angularjs.security.*;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
+import org.springframework.security.web.csrf.CsrfFilter;
+import tb.angularjs.web.filter.CsrfCookieGeneratorFilter;
 
-//import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
+import javax.inject.Inject;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired//Inject
+    @Inject
     private Environment env;
 
-    @Autowired//Inject
+    @Inject
     private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 
-    @Autowired//Inject
+    @Inject
     private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
 
-    @Autowired//Inject
+    @Inject
     private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
 
-    @Autowired//Inject
+    @Inject
     private Http401UnauthorizedEntryPoint authenticationEntryPoint;
 
-    //@Autowired//Inject
-    //private UserDetailsService userDetailsService;
+    @Inject
+    private UserDetailsService userDetailsService;
 
     //@Autowired//Inject
     //private RememberMeServices rememberMeServices;
@@ -49,35 +49,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired//Inject
+    @Inject
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        /*auth
+        auth
             .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());*/
+                .passwordEncoder(passwordEncoder());
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-            .antMatchers("/scripts/**/*.{js,html}")
-            .antMatchers("/bower_components/**")
-            .antMatchers("/i18n/**")
-            .antMatchers("/assets/**")
-            .antMatchers("/swagger-ui.html")
-            .antMatchers("/test/**");
-    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-           /* .addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class)
+                .csrf()
+        .and()
+            .addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class)
             .exceptionHandling()
             .authenticationEntryPoint(authenticationEntryPoint)
-        .and()
+        /*.and()
             .rememberMe()
             .rememberMeServices(rememberMeServices)
             .rememberMeParameter("remember-me")
-            .key(env.getProperty("jhipster.security.rememberme.key"))
+            .key(env.getProperty("jhipster.security.rememberme.key"))*/
         .and()
             .formLogin()
             .loginProcessingUrl("/api/authentication")
@@ -96,7 +89,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .headers()
             .frameOptions()
             .disable()
-        .and()*/
+        .and()
             .authorizeRequests()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
@@ -127,9 +120,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/protected/**").authenticated();
 
     }
-/*
+
     @Bean
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
         return new SecurityEvaluationContextExtension();
-    }*/
+    }
 }

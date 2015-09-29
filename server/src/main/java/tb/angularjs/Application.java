@@ -1,18 +1,23 @@
 package tb.angularjs;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.rest.SpringBootRepositoryRestMvcConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
+import tb.angularjs.elasticsearch.Customer;
+import tb.angularjs.elasticsearch.CustomerRepository;
 import tb.angularjs.model.Photo;
 import tb.angularjs.repository.PhotoRepository;
 
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 @EnableJpaRepositories
+@EnableElasticsearchRepositories
 @Import(RepositoryRestMvcConfiguration.class)
 public class Application extends SpringBootRepositoryRestMvcConfiguration {
 
@@ -21,11 +26,9 @@ public class Application extends SpringBootRepositoryRestMvcConfiguration {
         config.exposeIdsFor(Photo.class);
     }
 
-
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
 
-        //ConfigurableApplicationContext context = SpringApplication.run(Application.class);
         PhotoRepository repository = ctx.getBean(PhotoRepository.class);
 
         // save a couple of customers

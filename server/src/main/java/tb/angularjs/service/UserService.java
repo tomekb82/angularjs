@@ -14,6 +14,7 @@ import tb.angularjs.repository.AuthorityRepository;
 import tb.angularjs.repository.PersistentTokenRepository;
 import tb.angularjs.repository.UserRepository;
 import tb.angularjs.security.SecurityUtils;
+import tb.angularjs.service.util.RandomUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -97,11 +98,13 @@ public class UserService {
         newUser.setEmail(email);
         newUser.setLangKey(langKey);
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true);//false);
         // new user gets registration key
-        //newUser.setActivationKey(RandomUtil.generateActivationKey());
+        newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
+        newUser.setCreatedDate(DateTime.now());
+        newUser.setCreatedBy("Olek");
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
@@ -160,7 +163,7 @@ public class UserService {
     @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
         DateTime now = new DateTime();
-        List<User> users = userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minusDays(3));
+        List<User> users = null;//userRepository.findAllByActivatedIsFalseAndCreatedDateBefore(now.minusDays(3));
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
