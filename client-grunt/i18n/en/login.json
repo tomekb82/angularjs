@@ -1,19 +1,19 @@
 {
     "login": {
-        "title": "Authentification",
+        "title": "Authentication",
         "form": {
-            "password": "Mot de passe",
-            "password.placeholder": "Votre mot de passe",
-            "rememberme": "Garder la session ouverte",
-            "button": "Connexion"
+            "password": "Password",
+            "password.placeholder": "Your password",
+            "rememberme": "Automatic Login",
+            "button": "Authenticate"
         },
         "messages": {
             "error": {
-                "authentication": "<strong>Erreur d'authentification!</strong> Veuillez vérifier vos identifiants de connexion."
+                "authentication": "<strong>Authentication failed!</strong> Please check your credentials and try again."
             }
         },
         "password" : {
-            "forgot": "Avez-vous oublié votre mot de passe?"
+            "forgot": "Did you forget your password?"
         }
     }
 }

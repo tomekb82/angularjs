@@ -20,15 +20,15 @@
                 "register": "Register"
             },
             "admin": {
-                "main": "Administration",
+                "main": "Administracja",
                 "tracker": "User tracker",
-                "metrics": "Metrics",
-                "health": "Health",
-                "configuration": "Configuration",
-                "logs": "Logs",
-                "audits": "Audits",
+                "metrics": "Metryki",
+                "health": "Wydajność",
+                "configuration": "Konfiguracja",
+                "logs": "Logi",
+                "audits": "Audyt",
                 "apidocs": "API",
-                "database": "Database"
+                "database": "Baza danych"
             },
             "language": "Język"
         },

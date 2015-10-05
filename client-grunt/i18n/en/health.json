@@ -1,27 +1,27 @@
 {
     "health": {
-        "title": "Diagnostics",
-        "refresh.button": "Rafraichir",
+        "title": "Health checks",
+        "refresh.button": "Refresh",
         "stacktrace": "Stacktrace",
         "details": {
-            "details": "Détails",
-            "properties": "Propriétés",
-            "name": "Nom",
-            "value": "Valeur",
-            "error": "Erreur"
+            "details": "Details",
+            "properties": "Properties",
+            "name": "Name",
+            "value": "Value",
+            "error": "Error"
         },
         "indicator": {
-            "diskSpace": "Espace disque",
+            "diskSpace": "Disk space",
             "mail": "Email",
-            "mongo": "MongoDB"
+            "db": "Database"
         },
         "table": {
-            "service": "Nom du service",
-            "status": "Etat"
+            "service": "Service name",
+            "status": "Status"
         },
         "status": {
-            "UP": "DISPONIBLE",
-            "DOWN": "HORS SERVICE"
+            "UP": "UP",
+            "DOWN": "DOWN"
         }
     }
 }
