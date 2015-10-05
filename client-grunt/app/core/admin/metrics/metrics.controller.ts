@@ -19,9 +19,9 @@ angular.module('myApp')
         $scope.$watch('metrics', function (newValue) {
             $scope.servicesStats = {};
             $scope.cachesStats = {};
-            angular.forEach(newValue.timers, function (value, key) {
-                if (key.indexOf('web.rest') !== -1 || key.indexOf('service') !== -1) {
-                    $scope.servicesStats[key] = value;
+            angular.forEach(newValue, function (value, key) {
+                if (key.indexOf('web.controller') !== -1 || key.indexOf('service') !== -1) {
+                  $scope.servicesStats[key] = value;
                 }
 
                 if (key.indexOf('net.sf.ehcache.Cache') !== -1) {
@@ -45,7 +45,7 @@ angular.module('myApp')
             MonitoringService.threadDump().then(function(data) {
 
                 var modalInstance = $modal.open({
-                    templateUrl: 'scripts/app/admin/metrics/metrics.modal.html',
+                    templateUrl: 'app/core/admin/metrics/metrics.modal.html',
                     controller: 'MetricsModalController',
                     size: 'lg',
                     resolve: {
