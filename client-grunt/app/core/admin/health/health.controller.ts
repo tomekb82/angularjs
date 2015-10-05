@@ -63,7 +63,7 @@ angular.module('myApp')
 
         $scope.showHealth = function(health) {
             var modalInstance = $modal.open({
-                templateUrl: 'scripts/app/admin/health/health.modal.html',
+                templateUrl: 'app/core/admin/health/health.modal.html',
                 controller: 'HealthModalController',
                 size: 'lg',
                 resolve: {

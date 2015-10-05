@@ -44,21 +44,25 @@ angular.module('myApp')
                 if (force === true) {
                     _identity = undefined;
                 }
+                console.log('Principal: identity()');
                 // check and see if we have retrieved the identity data from the server.
                 // if we have, reuse it by immediately resolving
 				        if (angular.isDefined(_identity)) {
                     deferred.resolve(_identity);
                     return deferred.promise;
                 }
+                console.log('Principal: identity() 2');
                 // retrieve the identity data from the server, update the identity object, and then resolve.
                 Account.get().$promise
                     .then(function (account) {
                         _identity = account.data;
                         _authenticated = true;
+                        console.log('Principal: identity() 3 ');
                         deferred.resolve(_identity);
                         //Tracker.connect();
                     })
                     .catch(function() {
+                      console.log('Principal: identity() 4');
                         _identity = null;
                         _authenticated = false;
                         deferred.resolve(_identity);

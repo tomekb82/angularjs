@@ -31,7 +31,3 @@ angular.module('language')
         //JHipster will add new languages here
     ]
 );
-
-
-
-

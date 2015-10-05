@@ -23,7 +23,7 @@
         </progressbar>
     </div>
     <div class="col-md-4">
-        <b translate="metrics.jvm.threads.title">Threads</b> (Total: {{metrics.threads}} {{metrics.gauges['jvm.threads.count'].value}}) <a class="hand" ng-click="refreshThreadDumpData()" data-toggle="modal" data-target="#threadDump"><i class="glyphicon glyphicon-eye-open"></i></a>
+        <b translate="metrics.jvm.threads.title">Threads</b> (Total: {{metrics.gauges['jvm.threads.count'].value}}) <a class="hand" ng-click="refreshThreadDumpData()" data-toggle="modal" data-target="#threadDump"><i class="glyphicon glyphicon-eye-open"></i></a>
         <p><span translate="metrics.jvm.threads.runnable">Runnable</span> {{metrics.gauges['jvm.threads.runnable.count'].value}}</p>
         <progressbar min="0" value="metrics.gauges['jvm.threads.runnable.count'].value" max="metrics.gauges['jvm.threads.count'].value" class="progress-striped active" type="success">
             <span>{{metrics.gauges['jvm.threads.runnable.count'].value * 100 / metrics.gauges['jvm.threads.count'].value  | number:0}}%</span>
@@ -211,4 +211,3 @@
 </div>
 
 </div>
-

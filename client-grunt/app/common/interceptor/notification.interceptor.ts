@@ -4,6 +4,7 @@ angular.module('myApp')
     .factory('notificationInterceptor', function ($q, AlertService) {
         return {
             response: function(response) {
+                console.log('notificationInterceptor');
                 var alertKey = response.headers('X-myApp-alert');
                 if (angular.isString(alertKey)) {
                     AlertService.success(alertKey, { param : response.headers('X-myApp-params')});

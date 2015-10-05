@@ -4,7 +4,6 @@ angular.module('myApp')
     .factory('MonitoringService', function ($rootScope, $http) {
         return {
             getMetrics: function () {
-		console.log('MonitoringService: getMetrics()');
                 return $http.get('metrics').then(function (response) {
                     return response.data;
                 });
