@@ -1,6 +1,7 @@
 package tb.angularjs.web.controller;
 
 
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class PhotoController {
     @RequestMapping(value = "/photos",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     @Transactional(readOnly = true)
     public List<Photo> getAllPhotos() {
         log.info("REST request to get all Photos");
@@ -59,7 +60,7 @@ public class PhotoController {
     @RequestMapping(value = "/photos/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<Photo> get(@PathVariable Long id) {
         log.info("REST request to get Photo : {}", id);
         return Optional.ofNullable(photoRepository.findOne(id))
@@ -75,7 +76,7 @@ public class PhotoController {
     @RequestMapping(value = "/photos/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         log.debug("REST request to delete Photo : {}", id);
         photoRepository.delete(id);
@@ -89,7 +90,7 @@ public class PhotoController {
     @RequestMapping(value = "/photos",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<Photo> create(@RequestBody Photo photo) throws URISyntaxException {
         log.info("REST request to save Photo : {}", photo);
         if (photo.getId() != null) {
@@ -108,7 +109,7 @@ public class PhotoController {
     @RequestMapping(value = "/photos",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<Photo> update(@RequestBody Photo photo) throws URISyntaxException {
         log.info("REST request to update Photo : {}", photo);
         if (photo.getId() == null) {

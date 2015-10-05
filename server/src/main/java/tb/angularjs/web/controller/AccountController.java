@@ -1,5 +1,6 @@
 package tb.angularjs.web.controller;
 
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class AccountController {
     @RequestMapping(value = "/register",
             method = RequestMethod.POST,
             produces = MediaType.TEXT_PLAIN_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<?> registerAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) {
         return userRepository.findOneByLogin(userDTO.getLogin())
             .map(user -> new ResponseEntity<>("login already in use", HttpStatus.BAD_REQUEST))
@@ -78,7 +79,7 @@ public class AccountController {
     @RequestMapping(value = "/activate",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key) {
         return Optional.ofNullable(userService.activateRegistration(key))
             .map(user -> new ResponseEntity<String>(HttpStatus.OK))
@@ -91,7 +92,7 @@ public class AccountController {
     @RequestMapping(value = "/authenticate",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public String isAuthenticated(HttpServletRequest request) {
         log.debug("REST request to check if the current user is authenticated");
         return request.getRemoteUser();
@@ -103,7 +104,7 @@ public class AccountController {
     @RequestMapping(value = "/account",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<UserDTO> getAccount() {
 
        return Optional.ofNullable(userService.getUserWithAuthorities())
@@ -129,7 +130,7 @@ public class AccountController {
     @RequestMapping(value = "/account",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@Timed
+    @Timed
     public ResponseEntity<String> saveAccount(@RequestBody UserDTO userDTO) {
         return userRepository
             .findOneByLogin(userDTO.getLogin())

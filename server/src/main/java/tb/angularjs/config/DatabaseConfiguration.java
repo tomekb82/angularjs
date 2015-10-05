@@ -21,10 +21,10 @@ import org.springframework.util.StringUtils;
 import javax.sql.DataSource;
 import java.util.Arrays;
 
-//@Configuration
-//@EnableJpaRepositories("tb.angularjs.repository")
-//@EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
-//@EnableTransactionManagement
+@Configuration
+@EnableJpaRepositories("tb.angularjs.repository")
+@EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
+@EnableTransactionManagement
 public class DatabaseConfiguration implements EnvironmentAware {
 
     private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);

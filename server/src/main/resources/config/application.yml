@@ -11,11 +11,13 @@ spring:
         serverName:
         username: root
         password: root
+        testWhileIdle: true
+        validationQuery: SELECT 1
 
     jpa:
-        database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+        #database-platform: org.hibernate.dialect.MySQLInnoDBDialect
         database: MYSQL
-        openInView: false
+        #openInView: false
         show_sql: true
         generate-ddl: false
         hibernate:
@@ -23,9 +25,9 @@ spring:
             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy #org.hibernate.cfg.EJB3NamingStrategy
         properties:
             hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
-            hibernate.cache.use_second_level_cache: true
-            hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
+            #hibernate.cache.use_second_level_cache: true
+            #hibernate.cache.use_query_cache: false
+            #hibernate.generate_statistics: true
 
 
 metrics:
