@@ -106,17 +106,6 @@ public class AccountController {
     //@Timed
     public ResponseEntity<UserDTO> getAccount() {
 
-     /*   return new ResponseEntity<>(
-                new UserDTO(
-                        "login",
-                        null,
-                        "jan",
-                        "kowalski",
-                        "jan.kowalski@poczta.fm",
-                        "en",
-                        new ArrayList<>(Arrays.asList("ROLE_ADMIN"))),
-                HttpStatus.OK);*/
-
        return Optional.ofNullable(userService.getUserWithAuthorities())
             .map(user -> {
                 return new ResponseEntity<>(

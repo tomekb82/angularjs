@@ -20,6 +20,7 @@ public class AjaxAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
                                         Authentication authentication)
             throws IOException, ServletException {
 
+        System.out.println("onAuthenticationSuccess");
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }

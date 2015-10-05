@@ -16,7 +16,7 @@ import tb.angularjs.model.Photo;
 import tb.angularjs.repository.PhotoRepository;
 
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
-@EnableJpaRepositories
+//@EnableJpaRepositories
 @EnableElasticsearchRepositories
 @Import(RepositoryRestMvcConfiguration.class)
 public class Application extends SpringBootRepositoryRestMvcConfiguration {
